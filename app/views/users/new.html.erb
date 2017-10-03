@@ -6,8 +6,14 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :gender %>
+      <%= f.select :gender, "<option value=0>Female</option><option value=1>Male</option></select>".html_safe, {include_blank: "Gender"}, {class: "form-control"} %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
