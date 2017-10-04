@@ -1,32 +1,40 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<center>
+  <h1>SIGN UP</h1>
+</center>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :username %>
+      <%= "名前" %>
       <%= f.text_field :username, class: 'form-control' %>
+      <br/>
 
-      <%= f.label :name %>
+      <%= "ユーザーネーム *" %>
       <%= f.text_field :name, class: 'form-control' %>
+      <br/>
 
-      <%= f.label :gender %>
+      <%= "性別" %>
       <%= f.select :gender, "<option value=0>Female</option><option value=1>
-        Male</option></select>".html_safe, {include_blank: "Gender"},
+        Male</option></select>".html_safe, {include_blank: "[select]"},
         {class: "form-control"} %>
+        <br/>
 
-      <%= f.label :email %>
+      <%= "イーメール *" %>
       <%= f.email_field :email, class: 'form-control' %>
+      <br/>
 
-      <%= f.label :password %>
+      <%= "パスワード *" %>
       <%= f.password_field :password, class: 'form-control' %>
+      <br/>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= "パスワード確認 *" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <br/>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <%= f.submit "参加する", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
