@@ -17,9 +17,13 @@ ActiveRecord::Schema.define(version: 20171004063346) do
     t.string "username"
     t.string "email"
     t.string "gender"
+    t.string "password_digest"
+    t.string "provider"
+    t.string "oauth_token"
+    t.bigint "oauth_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
