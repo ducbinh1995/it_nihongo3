@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "rails", "~> 5.1.2"
+gem "rails", "~> 5.1.4"
 gem "sqlite3"
 gem "puma", "~> 3.7"
 gem "bootstrap-sass"
@@ -24,6 +24,8 @@ gem "bootstrap-will_paginate", "1.0.0"
 gem "jquery-rails", "4.3.1"
 gem "config"
 gem "figaro"
+gem 'omniauth-facebook'
+gem 'devise'
 
 group :development, :test do
   gem "rspec"
