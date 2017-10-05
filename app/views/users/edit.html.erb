@@ -1,6 +1,6 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, "Edit user") %>
 <center>
-  <h1>SIGN UP</h1>
+<h1>UPDATE YOUR PROFILE</h1>
 </center>
 
 <div class="row">
@@ -8,11 +8,11 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= "名前" %>
+            <%= "名前" %>
       <%= f.text_field :username, class: 'form-control' %>
       <br/>
 
-      <%= "ユーザーネーム *" %>
+      <%= "ユーザーネーム" %>
       <%= f.text_field :name, class: 'form-control' %>
       <br/>
 
@@ -20,21 +20,9 @@
       <%= f.select :gender, "<option value=0>Female</option><option value=1>
         Male</option></select>".html_safe, {include_blank: "[select]"},
         {class: "form-control"} %>
-      <br/>
+        <br/>
 
-      <%= "イーメール *" %>
-      <%= f.email_field :email, class: 'form-control' %>
-      <br/>
-
-      <%= "パスワード *" %>
-      <%= f.password_field :password, class: 'form-control' %>
-      <br/>
-
-      <%= "パスワード確認 *" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-      <br/>
-
-      <%= f.submit "参加する", class: "btn btn-primary" %>
+      <%= f.submit "変更する", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

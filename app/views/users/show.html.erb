@@ -16,7 +16,7 @@
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "メールアドレス:" %> <%= @user.email %></p>
           <p><i class="fa fa-intersex fa-fw w3-margin-right w3-large w3-text-teal"></i>
                <%= "性別:" %>
-               <% if @user.gender == 0 %>
+               <% if @user.gender == "0" %>
                   Female
                <% else %>
                   Male
@@ -24,17 +24,17 @@
           </p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "写真" %>　</p>
           <div class="image_size w3-center">
-         		  <% if @user.gender == 0 %>
-                     <%= image_tag "female.png" %>
-                  <% else %>
-                     <%= image_tag "male.png" %>
-                  <% end %>
+         	<% if @user.gender == "0" %>
+                <%= image_tag "female.png" %>
+            <% else %>
+                <%= image_tag "male.png" %>
+            <% end %>
           </div>
           <br/>
           <!--button-->
         <p>
             <% if logged_in? && (@user.id == current_user.id) %>
-               <%= link_to "プロフィールを変更する","#", class: "btn btn-primary" %>
+               <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-primary" %>
                <%= link_to "パスワードを変更する","#", class: "btn btn-primary" %>
             <% end %>
         </p>
