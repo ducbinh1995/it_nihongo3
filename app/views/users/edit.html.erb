@@ -8,7 +8,7 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-            <%= "名前" %>
+      <%= "名前" %>
       <%= f.text_field :username, class: 'form-control' %>
       <br/>
 
@@ -21,6 +21,10 @@
         Male</option></select>".html_safe, {include_blank: "[select]"},
         {class: "form-control"} %>
         <br/>
+        
+      <%= "アバター" %>
+      <%= f.file_field :avatar %>
+      <br/>
 
       <%= f.submit "変更する", class: "btn btn-primary" %>
     <% end %>
