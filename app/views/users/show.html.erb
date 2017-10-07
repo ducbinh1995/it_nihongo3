@@ -24,10 +24,14 @@
           </p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "写真" %>　</p>
           <div class="image_size w3-center">
-         	<% if @user.gender == "0" %>
-                <%= image_tag "female.png" %>
+            <% if @user.avatar.present? %>
+                <%= image_tag @user.avatar %>
             <% else %>
-                <%= image_tag "male.png" %>
+         	    <% if @user.gender == "0" %>
+                    <%= image_tag "female.png" %>
+                <% else %>
+                    <%= image_tag "male.png" %>
+                <% end %>
             <% end %>
           </div>
           <br/>

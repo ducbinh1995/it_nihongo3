@@ -22,4 +22,6 @@ class User < ApplicationRecord
     user.save!
     user
   end
+  
+  mount_uploader :avatar, AvatarUploader
 end
