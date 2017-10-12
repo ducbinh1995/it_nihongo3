@@ -7,22 +7,43 @@ class SessionsController < ApplicationController
     if params[:session].present?
       user = User.find_by(email: params[:session][:email].downcase)
       if (user && user.authenticate(params[:session][:password]))
-          log_in user
-          remember user
-          redirect_to root_url
+        if user.activated?
+          login_success user
+        else
+          not_activated
+        end
       else
-        flash.now[:danger] = 'Invalid email/password combination'
-        render 'new'
+        login_fail
       end
-    else
+    elsif
       user = User.from_omniauth(request.env["omniauth.auth"])
-      log_in user
-      redirect_to root_url
+      login_success user
+    else
+      login_fail
     end
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
+    redirect_to root_url
+  end
+
+  private
+
+  def login_success user
+    log_in user
+    session = params[:session]
+    session[:remember_me] == "1" ? remember(user) : forget(user)
+    redirect_back_or user
+  end
+
+  def login_fail
+    flash.now[:danger] = 'Invalid email/password combination'
+    render :new
+  end
+
+  def not_activated
+    flash[:warning] = "Account not activated. "
     redirect_to root_url
   end
 end
