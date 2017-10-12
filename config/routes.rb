@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'users/show'
 
   get 'sessions/new'
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
   get "/auth/failure", :to => "session#new"
 
   resources :users
+  resources :books
 end
