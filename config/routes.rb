@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  get 'users/show'
+
+  get 'sessions/new'
+
+  get 'users/new'
   root "static_pages#home"
 
   get "/signup", to: "users#new"
@@ -12,6 +18,7 @@ Rails.application.routes.draw do
   get "/auth/failure", :to => "session#new"
 
   resources :users
+  resources :books
   resources :account_activations, only: :edit
   resources :password_resets, except: %i(index show destroy)
 end
