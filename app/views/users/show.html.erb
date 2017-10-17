@@ -4,11 +4,11 @@
 
 <!--The Grid -->
   <div class="w3-row-padding">
-  
+
      <!--Left Column -->
     <div class="w3-third">
 
-      <div class="w3-white w3-text-grey w3-card-4" >
+      <div class="w3-white w3-text-black w3-card-4" >
               <!--avatar-->
         <!--info-->
         <div class="w3-container">
@@ -25,7 +25,7 @@
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "写真" %>　</p>
           <div class="image_size w3-center">
             <% if @user.avatar.present? %>
-                <%= image_tag @user.avatar %>
+                <%= image_tag @user.avatar, :size => "360x360" %>
             <% else %>
          	    <% if @user.gender == "0" %>
                     <%= image_tag "female.png" %>
@@ -38,16 +38,17 @@
           <!--button-->
         <p>
             <% if logged_in? && (@user.id == current_user.id) %>
-               <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-primary" %>
-               <%= link_to "パスワードを変更する","#", class: "btn btn-primary" %>
+               <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-default" %>
+               <%= link_to "パスワードを変更する","#", class: "btn btn-default" %>
             <% end %>
         </p>
-        
+
         </div>
-      </div><br>
+      </div>
+      <br>
 
      <!--End Left Column -->
     </div>
-    
+
    <!--End Grid -->
   </div>

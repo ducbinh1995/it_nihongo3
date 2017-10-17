@@ -1,52 +1,59 @@
 <%= form_with(model: book, local: true) do |form| %>
-  <% if book.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+<% if book.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
 
-      <ul>
-      <% book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :book_title %>
-  </div>
+<div class="field">
+  <%= form.label :title %>
+  <%= form.text_field :title, id: :book_title %>
+</div>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author, id: :book_author %>
-  </div>
+<div class="field">
+  <%= form.label :author %>
+  <%= form.text_field :author, id: :book_author %>
+</div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image, id: :book_image %>
-  </div>
+<div class="field">
+  <%= form.label :image %>
+  <%= form.text_field :image, id: :book_image %>
+</div>
 
-  <div class="field">
-    <%= form.label :isbn %>
-    <%= form.text_field :isbn, id: :book_isbn %>
-  </div>
+<div class="field">
+  <%= form.label :isbn %>
+  <%= form.text_field :isbn, id: :book_isbn %>
+</div>
 
-  <div class="field">
-    <%= form.label :publisher %>
-    <%= form.text_field :publisher, id: :book_publisher %>
-  </div>
+<div class="field">
+  <%= form.label :publisher %>
+  <%= form.text_field :publisher, id: :book_publisher %>
+</div>
 
-  <div class="field">
-    <%= form.label :publish-date %>
-    <%= form.date_select :publish-date, id: :book_publish-date %>
-  </div>
+<div class="field">
+  <%= form.label :publish_date %>
+  <%= form.date_select :publish_date, id: :book_publish_date %>
+</div>
 
-  <div class="field">
-    <%= form.label :categoryid %>
-    <%= form.number_field :categoryid, id: :book_categoryid %>
-  </div>
+<div class="field">
+  <%= form.label :categoryid %>
+  <%= form.number_field :categoryid, id: :book_categoryid %>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="field">
+  <%= "本の写真" %>
+  <span class="picture">
+  <%= form.file_field :image %>
+  </span>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
 <% end %>

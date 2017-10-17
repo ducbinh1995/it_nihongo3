@@ -5,10 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "rails", "~> 5.1.4"
 gem "sqlite3"
 gem "puma", "~> 3.7"
-gem "bootstrap-sass"
+gem 'bootstrap', '~> 4.0.0.beta'
+gem "font-awesome-rails"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
