@@ -12,6 +12,7 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :create_activation_digest
 
+
   class << self
     def digest string
       cost =
@@ -96,4 +97,5 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
+
 end

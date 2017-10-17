@@ -65,9 +65,10 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.5.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.0.0.beta)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (~> 1.11.1)
+      sass (>= 3.4.19)
     bootstrap-will_paginate (1.0.0)
       will_paginate
     brakeman (4.0.1)
@@ -267,6 +268,8 @@ GEM
     fog-xml (0.1.3)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -355,6 +358,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.4.0.0)
       ast (~> 2.2)
+    popper_js (1.11.1)
     powerpack (0.1.1)
     pry (0.11.1)
       coderay (~> 1.1.0)
@@ -531,7 +535,7 @@ DEPENDENCIES
   autoprefixer-rails
   bcrypt (= 3.1.11)
   better_errors
-  bootstrap-sass
+  bootstrap (~> 4.0.0.beta)
   bootstrap-will_paginate (= 1.0.0)
   brakeman
   bundler-audit
@@ -546,6 +550,7 @@ DEPENDENCIES
   faker (= 1.7.3)
   figaro
   fog (= 1.40.0)
+  font-awesome-rails
   guard (= 2.14.1)
   guard-minitest (= 2.4.6)
   guard-rspec
@@ -576,6 +581,7 @@ DEPENDENCIES
   simplecov-rcov
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets-rails
   sqlite3
   turbolinks (~> 5)
   uglifier (>= 1.3.0)
