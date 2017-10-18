@@ -1,0 +1,23 @@
+<center>
+  <h1>LOG IN</h1>
+</center>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for :session, url: login_path(params[:id]) do |f| %>
+
+      <%= hidden_field_tag :id, @user.id %>
+
+      <p>Are you sure to login with Facebook account <%= @user.name %>?</p>
+      <br/>
+
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember me</span>
+      <% end %>
+      <br/>
+
+      <%= f.submit "ログイン", name: "fb-login", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
