@@ -38,6 +38,12 @@
                     <%= link_to "Books", books_path, :class => "nav-link" %>
                 </li>
 
+                <% if logged_in? and current_user.admin? %>
+                    <li>
+                        <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
+                    </li>
+                <% end %>
+
                 <% if not logged_in? %>
                 <li class="nav-item">
                     <li><%= link_to "Log in", login_path, :class => "nav-link" %></li>

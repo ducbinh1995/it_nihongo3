@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
       user = User.from_omniauth(request.env["omniauth.auth"])
       @user=user
       render :fb
-      #login_success user
+
     else
       login_fail
     end

@@ -39,6 +39,7 @@ class User < ApplicationRecord
     user.password = "123456"
     user.oauth_token = auth_hash["credentials"]["token"]
     user.oauth_expires_at = auth_hash["credentials"]["expires_at"]
+    user.activated = true;
     user.save!
     user
   end
