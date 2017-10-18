@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    if params[:session].present?
+    if params.has_key? "basic-login"
       user = User.find_by(email: params[:session][:email].downcase)
       if (user && user.authenticate(params[:session][:password]))
         if user.activated?
@@ -15,9 +15,14 @@ class SessionsController < ApplicationController
       else
         login_fail
       end
+    elsif params.has_key? "fb-login"
+      user = User.find_by(id: params[:id])
+      login_success user
     elsif
       user = User.from_omniauth(request.env["omniauth.auth"])
-      login_success user
+      @user=user
+      render :fb
+      #login_success user
     else
       login_fail
     end
