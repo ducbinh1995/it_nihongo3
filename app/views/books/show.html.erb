@@ -1,44 +1,20 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= render partial: 'shared/book_show', locals: { book: @book } %>
+    </div>
+    <div class="col">
+      <% if @book.reviews.any? %>
+      <h3>Reviews (<%= @book.reviews.count %>)</h3>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @book.image.url %>
-</p>
-
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @book.publisher %>
-</p>
-
-<p>
-  <strong>Publish date:</strong>
-  <%= @book.publish_date %>
-</p>
-
-<p>
-  <strong>Categoryid:</strong>
-  <%= @book.categoryid %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
-
-
-
-<header>
-<h1 id="page-title"><%= @book.title %></h1></header>
+      <% @reviews.each do |review| %>
+        <%= User.find_by_id(review.user_id).name + "'s review    "%>
+        <%= link_to 'Show', review %>
+        <br>
+      <% end %>
+      <%= will_paginate @reviews %>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :reviews, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   attr_reader :remember_token, :activation_token, :reset_token
   validates :name, presence: true, length: {maximum: Settings.name_length_max}

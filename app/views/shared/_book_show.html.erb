@@ -1,0 +1,44 @@
+<header>
+<h1 id="page-title"><%= @book.title %></h1></header>
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @book.image.url, :size => "225x320" %>
+</p>
+
+<p>
+  <strong>Isbn:</strong>
+  <%= @book.isbn %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @book.publisher %>
+</p>
+
+<p>
+  <strong>Publish date:</strong>
+  <%= @book.publish_date %>
+</p>
+
+<p>
+  <strong>Categoryid:</strong>
+  <%= @book.categoryid %>
+</p>
+<% bookx=Book.find(params[:id]) %>
+<%= bookx.id %>
+<% if logged_in? and not current_user.admin? %>
+      <%= link_to 'New Review ',
+      new_review_path(:bookid => params[:id])%> |
+<% end %>
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
