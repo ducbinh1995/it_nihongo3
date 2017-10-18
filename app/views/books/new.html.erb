@@ -7,27 +7,34 @@
 
       <%= "本の名" %>
       <%= f.text_field :title, class: "form-control" %>
+      <br/>
 
       <%= "本の作者" %>
       <%= f.text_field :author, class: "form-control" %>
-
+      <br/>
+    
       <%= "本のISBN" %>
       <%= f.text_field :isbn, class: "form-control" %>
-
+      <br/>
+      
       <%= "本の出版社" %>
       <%= f.text_field :publisher, class: "form-control" %>
-
+      <br/>
+      
       <%= "本の発売日" %>
-      <%= f.text_field :publish_date, class: "form-control" %>
-
+      <%= f.date_select :publish_date, class: "form-control" %>
+      <br/> <br/>
+      
       <%= "カテゴリーのID" %>
-      <%= f.text_field :categoryid, class: "form-control" %>
-
+      <%= f.number_field :categoryid, class: "form-control" %>
+      <br/>
+      
       <%= "本の写真" %>
       <span class="picture">
       <%= f.file_field :image %>
       </span>
-
+      <br/> <br/>
+      
       <%= f.submit "Create book", class: "btn btn-primary" %>
     <% end %>
   </div>

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @review.title %>
@@ -11,6 +9,5 @@
 </p>
 
 <% if logged_in? and @review.user == current_user %>
-<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Edit', "#" %> 
 <% end %>
-<%= link_to 'Back', @review.book %>

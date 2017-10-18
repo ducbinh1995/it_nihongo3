@@ -39,7 +39,6 @@
         <p>
             <% if logged_in? && (@user.id == current_user.id) %>
                <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-default" %>
-               <%= link_to "パスワードを変更する","#", class: "btn btn-default" %>
             <% end %>
         </p>
 
