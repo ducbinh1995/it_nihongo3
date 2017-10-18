@@ -1,22 +1,8 @@
-
-<div class="card-deck">
+<%= render partial: 'shared/searchbar' %>
+<br>
+<div class="card-columns">
   <% @books.each do |book| %>
-  <div class="card card-inverse card-success mb-3" style="max-width: 15rem; max-height: 20rem">
-    <%= image_tag book.image.url, :size => "235x200", class: "card-img-top img-fluid"%>
-    <div class="card-block">
-      <h4 class="card-title"><%= link_to book.title, book %></h4>
-      <h6 class="card-subtitle mb-2 text-muted">Author: <%= book.author %></h6>
-        <p class="card-text"></p>
-      <% if logged_in? and current_user.admin? %>
-        <a href="#" class="card-link"><%= link_to 'Edit', edit_book_path(book)%></a>
-        <a href="#" class="card-link"><%= link_to 'Destroy',
-         book, method: :delete, data: { confirm: 'Are you sure?' } %></a>
-         <a href="#" class="card-link"><%= link_to 'New Book', new_book_path %></a>
-         <% end %>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
+    <%= render partial: 'shared/book_card', locals: { book: book } %>
   <% end %>
+</div>
 

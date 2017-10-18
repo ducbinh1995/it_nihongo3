@@ -1,1 +1,16 @@
 
+<%= render partial: 'shared/searchbar' %>
+<br>
+
+<% if @books %>
+<div class="card-columns">
+    <% @books.each do |book| %>
+      <%= render partial: 'shared/book_card', locals: { book: book } %>
+    <% end %>
+  </div>
+<% else %>
+<div>
+  Library is empty now.
+</div>
+<% end %>
+

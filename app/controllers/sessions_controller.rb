@@ -17,7 +17,10 @@ class SessionsController < ApplicationController
       end
     elsif
       user = User.from_omniauth(request.env["omniauth.auth"])
-      login_success user
+      log_in user
+      session = params[:session]
+      remember(user)
+      redirect_back_or user
     else
       login_fail
     end

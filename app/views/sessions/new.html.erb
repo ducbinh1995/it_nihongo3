@@ -1,3 +1,8 @@
+<script>
+      function exefunction(){
+      return document.getElementById("rmb_checkbox").checked
+    }
+</script>
 <center>
   <h1>LOG IN</h1>
 </center>
@@ -16,7 +21,7 @@
       <br/>
 
       <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
+        <%= f.check_box :remember_me, id: "rmb_checkbox" %>
         <span>Remember me</span>
       <% end %>
       <br/>
