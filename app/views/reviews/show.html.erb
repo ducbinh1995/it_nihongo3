@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @review.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= simple_format(@review.content) %>
+</p>
+
+<% if logged_in? and @review.user == current_user %>
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<% end %>
+<%= link_to 'Back', @review.book %>

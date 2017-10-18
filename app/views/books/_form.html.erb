@@ -13,37 +13,32 @@
 
 <div class="field">
   <%= form.label :title %>
-  <%= form.text_field :title, id: :book_title %>
+  <%= form.text_field :title, id: :book_title, class: 'form-control' %>
 </div>
 
 <div class="field">
   <%= form.label :author %>
-  <%= form.text_field :author, id: :book_author %>
-</div>
-
-<div class="field">
-  <%= form.label :image %>
-  <%= form.text_field :image, id: :book_image %>
+  <%= form.text_field :author, id: :book_author, class: 'form-control' %>
 </div>
 
 <div class="field">
   <%= form.label :isbn %>
-  <%= form.text_field :isbn, id: :book_isbn %>
+  <%= form.text_field :isbn, id: :book_isbn, class: 'form-control' %>
 </div>
 
 <div class="field">
   <%= form.label :publisher %>
-  <%= form.text_field :publisher, id: :book_publisher %>
+  <%= form.text_field :publisher, id: :book_publisher, class: 'form-control' %>
 </div>
 
 <div class="field">
   <%= form.label :publish_date %>
-  <%= form.date_select :publish_date, id: :book_publish_date %>
+  <%= form.date_select :publish_date, id: :book_publish_date, class: 'form-control' %>
 </div>
 
 <div class="field">
   <%= form.label :categoryid %>
-  <%= form.number_field :categoryid, id: :book_categoryid %>
+  <%= form.number_field :categoryid, id: :book_categoryid, class: 'form-control' %>
 </div>
 
 <div class="field">
