@@ -3,12 +3,12 @@
       return document.getElementById("rmb_checkbox").checked
     }
 </script>
-<center>
-  <h1>LOG IN</h1>
-</center>
+<div class="login">
+  <div class="login-title">
+    <h3>LOGIN</h3>
+  </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="login-body">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= "イーメール" %>
@@ -21,21 +21,20 @@
       <br/>
 
       <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me, id: "rmb_checkbox" %>
+        <%= f.check_box :remember_me, id: "rmb_checkbox"%>
         <span>Remember me</span>
       <% end %>
-      <br/>
 
-      <%= f.submit "ログイン", name: "basic-login", class: "btn btn-primary" %>
-      <br/>
-      <br/>
-
-      <%= link_to "Facebookでログイン", "/auth/facebook", id: "sign_in",
-        class: "btn btn-primary" %>
-      <br/>
-      <br/>
+      <%= f.submit "ログイン", :name => "basic-login", :class => "btn btn-primary btn-block" %>
     <% end %>
+  </div>
 
+  <div class="facebook-login">
+    <%= link_to "Facebookでログイン", "/auth/facebook", id: "sign_in",
+        class: "btn btn-primary btn-block" %>
+  </div>
+
+  <div class="login-signup">
     <p>アカウントがない? <%= link_to "サインアップ", signup_path, class: "btn btn-primary" %></p>
   </div>
 </div>

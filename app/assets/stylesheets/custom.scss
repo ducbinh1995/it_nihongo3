@@ -1,9 +1,4 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-/* universal */
-
- #logo {
+#logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
@@ -21,6 +16,78 @@
 
 body {
   padding-top: 60px;
+  background-color: rgb(242, 242, 242);
+
+  .header {
+
+    padding: 5px 70px;
+  }
+
+  .login {
+    padding: 20px;
+    margin: 40px 250px;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: #ffffff;
+
+    .login-title {
+      display: block;
+      text-align: center;
+      border-bottom: 1px solid rgb(229, 229, 229);
+      margin-bottom: 20px;
+
+      h2 {
+        margin-top: 10px;
+      }
+    }
+
+    .login-body {
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgb(229, 229, 229);
+    }
+
+    .facebook-login {
+      padding-top: 20px;
+      margin-bottom: 20px;
+      display: block;
+    }
+  }
+
+  .sort-tab {
+    background-color: white;
+    display: block;
+    margin: 30px 0px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+
+    .row {
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .sort-tab-item {
+      margin: 0px 10px;
+      margin-right: 24px;
+      font-size: 24px;
+
+      .sort-tab-link {
+        cursor: pointer;
+        color: #333;
+        display: block;
+      }
+
+      .active {
+        border-bottom: 1px solid red;
+      }
+    }
+  }
+}
+
+.carousel-item .img-fluid {
+  width:100%;
+  height:100%;
+}
+
+.card {
+  padding: 20px;
 }
 
 section {
@@ -55,4 +122,25 @@ textarea {
 
 .card-img-top {
     width: 100%;
+}
+
+$card-column-sizes: (
+    xs: 2,
+    sm: 2,
+    md: 2,
+    lg: 2,
+);
+
+@each $breakpoint-size, $column-count in $card-column-sizes {
+    @include media-breakpoint-up($breakpoint-size) {
+      .card-columns {
+        column-count: $column-count;
+        column-gap: 1.25rem;
+
+        .card {
+          display: inline-block;
+          width: 100%; // Don't let them exceed the column width
+        }
+      }
+    }
 }

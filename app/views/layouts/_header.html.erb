@@ -1,55 +1,40 @@
-<div id="app" class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-faded">
-        <a class="navbar-brand" href="#">IbookX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarNavDropdown" class="navbar-collapse collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+<div>
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark header">
+    <div id="navbarNavDropdown" class="navbar-collapse collapse">
+      <ul class="navbar-nav mr-auto">
+        <%= link_to "IbookX",books_path, :class => "navbar-brand"%>
+      </ul>
+      <ul class="navbar-nav header-right">
+        <li>
+          <%= link_to "Books", books_path, :class => "nav-link" %>
+        </li>
 
-                      <%= link_to "Home", root_path, id: "logo", :class => "nav-link" %>
-                        <span class="sr-only">(current)</span>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" id="Account">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="Account">
+                <%= link_to "Profile", edit_user_path(current_user), :class => "dropdown-item" %>
+                <%= link_to "Settings", '#', :class => "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+                <%= link_to "Log out", logout_path, method: :delete, :class => "dropdown-item" %>
+            </div>
+          </li>
+        <% end %>
 
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <% if logged_in? %>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">
-                          <%= link_to "Profile", current_user %>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <%= link_to "Settings", '#' %>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                          <%= link_to "Log out", logout_path, method: :delete %>
-                        </a>
+        <% if logged_in? and current_user.admin? %>
+          <li>
+            <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
+          </li>
+        <% end %>
 
-                    </div>
-                </li>
-                  <% end %>
-                <li>
-                    <%= link_to "Books", books_path, :class => "nav-link" %>
-                </li>
-
-                <% if logged_in? and current_user.admin? %>
-                    <li>
-                        <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
-                    </li>
-                <% end %>
-
-                <% if not logged_in? %>
-                <li class="nav-item">
-                    <li><%= link_to "Log in", login_path, :class => "nav-link" %></li>
-                </li>
-                <% end %>
-            </ul>
-        </div>
-    </nav>
+        <% if not logged_in? %>
+          <li class="nav-item">
+            <li><%= link_to "Log in", login_path, :class => "nav-link" %></li>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 </div>

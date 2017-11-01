@@ -1,10 +1,11 @@
 <% provide(:title, 'Sign up') %>
-<center>
-  <h1>SIGN UP</h1>
-</center>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="login">
+  <div class="login-title">
+    <h3>SIGN UP</h3>
+  </div>
+
+  <div class="login-body">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
@@ -17,7 +18,7 @@
       <br/>
 
       <%= "性別" %>
-      <%= f.select :gender, "<option value=0>Female</option><option value=1>
+      <%= f.select :gender, "<option value=female>Female</option><option value=male>
         Male</option></select>".html_safe, {include_blank: "[select]"},
         {class: "form-control"} %>
       <br/>
