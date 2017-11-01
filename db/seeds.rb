@@ -48,7 +48,8 @@ User.create!(name:  "Greate teacher Onizuka",
         isbn: Faker::Number.number(10),
         publisher: Faker::Book.publisher,
         publish_date: "02-02-1992",
-        categoryid: Faker::Number.number(2)
+        categoryid: Faker::Number.number(2),
+        description: Faker::Lorem.paragraph(2)
         )
 end
 
