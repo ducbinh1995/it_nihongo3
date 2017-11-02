@@ -9,7 +9,9 @@
       <%= f.text_field :title, class: "form-control" %>
 
       <%= "Content" %>
-      <%= f.text_area :content, class: "form-control" %>
+      <%= f.text_area :content, :class => "tinymce",
+        :rows => 40, :cols => 120%>
+      <%= tinymce :alternate %>
 
 
       <%= f.hidden_field :book_id, value: params['bookid'] %>

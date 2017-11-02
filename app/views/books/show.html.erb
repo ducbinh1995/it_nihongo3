@@ -13,7 +13,7 @@
         <%= link_to 'Show', review %>
         <br>
       <% end %>
-      <%= will_paginate @reviews %>
+      <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
     <% end %>
     </div>
   </div>

@@ -43,9 +43,12 @@
 </div>
 
 <div class="card-columns">
-  <% @books.each do |book| %>
-    <%= render partial: 'shared/book_card', locals: { book: book } %>
-  <% end %>
+      <% @books.each do |book| %>
+        <%= render partial: 'shared/book_card', locals: { book: book } %>
+      <% end %>
+</div>
+<div class="digg_pagination">
+    <%= will_paginate @books, :container => false %>
 </div>
 
-<%= will_paginate @books %>
+

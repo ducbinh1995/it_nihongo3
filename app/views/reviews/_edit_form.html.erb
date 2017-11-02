@@ -1,0 +1,28 @@
+<% @book = @review.book %>
+<h1><%= "Edit your Review for" %></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: review, local: true) do |form| %>
+
+<div class="field">
+  <%= form.label :Title %>
+  <%= form.text_field :title, class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= form.label :Content %>
+  <%= form.text_area :content, :class => "tinymce",
+        :rows => 40, :cols => 120%>
+      <%= tinymce :alternate %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>
+  </div>
+</div>
+
+
+
