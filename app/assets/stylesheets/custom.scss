@@ -22,6 +22,10 @@ $gao_silver: #E6E6E6;
   text-decoration: none;
 }
 
+.body-bg {
+  padding: 0px 20px;
+}
+
 body {
   padding-top: 60px;
   background-color: rgb(242, 242, 242);
@@ -60,12 +64,42 @@ body {
     }
   }
 
+  .books {
+    background-color: white;
+    display: block;
+    margin: 30px 30px;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: .1em .1em .5em rgba(0,0,0,.45);
+
+    .card {
+      border: 0;
+
+      .card-head {
+        height: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .rate-point, .review-count {
+          display: block;
+        }
+      }
+
+      .card-content {
+        height: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
   .sort-tab {
     background-color: white;
     display: block;
-    margin: 30px 0px;
-    padding: 10px;
+    margin: 30px 30px;
+    padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: .1em .1em .5em rgba(0,0,0,.45);
 
     .row {
       border-bottom: 1px solid #f2f2f2;
@@ -84,6 +118,81 @@ body {
 
       .active {
         border-bottom: 1px solid red;
+      }
+    }
+  }
+
+  .book-detail {
+    background-color: white;
+    padding: 0px 30px;
+
+    .content {
+      padding: 40px 60px;
+      padding-right: 150px;
+
+      .left-section {
+        .image {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+        }
+
+        .info {
+          padding-top: 30px;
+
+          .data {
+            color: #868e96;
+            padding-left: 10px;
+          }
+        }
+      }
+
+      .right-section {
+        padding-left: 30px;
+
+        .reviews {
+          padding-top: 30px;
+
+          .point {
+            padding-left: 25px;
+            overflow: visible;
+          }
+
+          .review {
+            padding-top: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+          }
+
+          .title {
+            padding-left: 30px;
+
+            a {
+              font-size: 16px;
+              color: rgb(33, 37, 41);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;;
+              font-weight: bold;
+              line-height: 30px;
+            }
+
+            a:link {
+              text-decoration: none;
+            }
+
+            a:visited {
+              text-decoration: none;
+            }
+
+            a:hover {
+              text-decoration: none;
+              background: #ffffff;
+              color: #09f;
+            }
+          }
+
+          .content {
+            padding: 10px 0px;
+          }
+        }
       }
     }
   }
@@ -133,10 +242,10 @@ textarea {
 }
 
 $card-column-sizes: (
-    xs: 2,
-    sm: 2,
-    md: 2,
-    lg: 2,
+    xs: 3,
+    sm: 3,
+    md: 3,
+    lg: 3,
 );
 
 @each $breakpoint-size, $column-count in $card-column-sizes {
