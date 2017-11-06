@@ -1,20 +1,89 @@
-<p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= render partial: 'shared/book_show', locals: { book: @book } %>
-    </div>
-    <div class="col">
-      <% if @book.reviews.any? %>
-      <h3>Reviews (<%= @book.reviews.count %>)</h3>
+<div class="book-detail">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-3 left-section">
+        <%= image_tag @book.image.url, :class => "image" %>
+        <div class = "info">
+          <h5 class="title">Publisher</h5>
+          <nav class="data"><%= @book.publisher %></nav>
+        </div>
+        <div class = "info">
+          <h5 class="title">Publisher Date</h5>
+          <nav class="data"><%= @book.publish_date %></nav>
+        </div>
+        <div class = "info">
+          <h5 class="title">Isbn</h5>
+          <nav class="data"><%= @book.isbn %></nav>
+        </div>
+        <div class = "info">
+          <h5 class="title">Category</h5>
+          <nav class="data"><%= @book.categoryid %></nav>
+        </div>
+      </div>
+      <div class="col-md-9 right-section">
+        <div class="card-block">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h4 class="card-title"><%= @book.title %></h4>
+              <h6 class="card-subtitle mb-2 text-muted"><%= @book.author %></h6>
+            </li>
+            <li class="list-group-item">
+              <div class="card-text description">
+                <h5>Description</h5>
+                <p><%= @book.description %></p>
+              </div>
+              <div class="card-text reviews">
+                <h5>Reviews</h5>
+                <% @reviews.each do |review| %>
+                  <% user = User.find(review.user_id) %>
+                  <div class="review">
+                    <div class="author row">
+                      <div class="col-md-1 avatar">
+                        <%= display_avatar user, "50x50" %>
+                        <nav class="fa fa-star point row"> 5</nav>
+                      </div>
+                      <div class="col-md-10 title">
+                        <%= link_to review.title, review, :class => "card-title" %>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <%= user.name %>
+                        </h6>
+                        <div class="content">
+                          <p class="review-content"><%= review.content %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="digg_pagination">
+                  <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+                </div>
 
-      <% @reviews.each do |review| %>
-        <%= User.find_by_id(review.user_id).name + "'s review    "%>
-        <%= link_to 'Show', review %>
-        <br>
-      <% end %>
-      <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
-    <% end %>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <% if logged_in? and not current_user.admin? %>
+              <%= link_to 'Write a Review',
+              new_review_path(:bookid => params[:id]), :class => "btn btn-primary"%>
+              <% else %>
+              <%= link_to 'Edit Info', edit_book_path(@book), :class => "btn btn-info" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $(function(){
+    $(".review-content").each(function(i){
+      len=$(this).text().length;
+      if(len>80)
+      {
+        $(this).text($(this).text().substr(0,120)+' ...');
+      }
+    });
+  });
+</script>

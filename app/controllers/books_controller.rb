@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
-    @reviews = @book.reviews.paginate(page: params[:page])
+    @reviews = @book.reviews.paginate(page: params[:page], :per_page => 10)
   end
 
   # GET /books/new

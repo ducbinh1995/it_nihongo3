@@ -1,7 +1,7 @@
 <%= render partial: 'shared/searchbar' %>
 <br>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -42,11 +42,14 @@
   </div>
 </div>
 
-<div class="card-columns">
-      <% @books.each do |book| %>
-        <%= render partial: 'shared/book_card', locals: { book: book } %>
-      <% end %>
+<div class="books">
+  <div class="card-columns">
+    <% @books.each do |book| %>
+      <%= render partial: 'shared/book_card', locals: { book: book } %>
+    <% end %>
+  </div>
 </div>
+
 <div class="digg_pagination">
     <%= will_paginate @books, :container => false %>
 </div>
