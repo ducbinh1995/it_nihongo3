@@ -9,6 +9,7 @@ class BooksController < ApplicationController
     else
       Book.all.paginate(page: params[:page], :per_page => 10)
     end
+    @categories = Category.all
   end
 
   # GET /books/1
@@ -16,11 +17,13 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @reviews = @book.reviews.paginate(page: params[:page], :per_page => 10)
+    @categories = Category.all
   end
 
   # GET /books/new
   def new
     @book = Book.new
+    @categories = Category.all
   end
 
   # GET /books/1/edit

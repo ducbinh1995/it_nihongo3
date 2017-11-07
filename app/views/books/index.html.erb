@@ -1,3 +1,4 @@
+
 <%= render partial: 'shared/searchbar' %>
 <br>
 
@@ -29,29 +30,57 @@
 </div>
 
 <div class="sort-tab">
+
+  <div class="container">
   <div class="row">
-    <div class="sort-tab-item">
-      <a class="sort-tab-link active" href="#">New</a>
+  <div class="col">
+    <div class="books">
+      <div class="col">
+        <div class="sort-tab">
+          <div class="row">
+            <div class="sort-tab-item">
+              <a class="sort-tab-link active" href="#">New</a>
+            </div>
+            <div class="sort-tab-item">
+              <a class="sort-tab-link" href="#">Hot</a>
+            </div>
+            <div class="sort-tab-item">
+              <a class="sort-tab-link" href="#">Old</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-columns">
+          <% @books.each do |book| %>
+          <%= render partial: 'shared/book_card', locals: { book: book } %>
+          <% end %>
+        </div>
+
+        <div class="digg_pagination">
+          <%= will_paginate @books, :container => false %>
+        </div>
+      </div>
     </div>
-    <div class="sort-tab-item">
-      <a class="sort-tab-link" href="#">Hot</a>
     </div>
-    <div class="sort-tab-item">
-      <a class="sort-tab-link" href="#">Old</a>
+    <div class="col-2">
+      <br><br><br><br><br>
+      <div class="card">
+        <div class="card-block">
+          <nav class="nav flex-column">
+            <a class="nav-link active" href="#">Active</a>
+            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">Link</a>
+            <% if logged_in? and current_user.admin? %>
+            <li>
+              <%= link_to 'Add category', new_category_path, :class => "nav-link disabled" %>
+            </li>
+            <% end %>
+          </nav>
+        </div>
+      </div>
     </div>
+    </div>
+
+
+
   </div>
 </div>
-
-<div class="books">
-  <div class="card-columns">
-    <% @books.each do |book| %>
-      <%= render partial: 'shared/book_card', locals: { book: book } %>
-    <% end %>
-  </div>
-</div>
-
-<div class="digg_pagination">
-    <%= will_paginate @books, :container => false %>
-</div>
-
-

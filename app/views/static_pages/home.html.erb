@@ -1,16 +1,84 @@
+<div class="container">
+  <div class="row">
+    <%= render partial: 'shared/searchbar' %>
+    <br>
+    <br>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag "opera.jpg"%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "opera.jpg"%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "opera.jpg"%>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
 
-<%= render partial: 'shared/searchbar' %>
-<br>
+    <div class="col">
+      <div class="sort-tab">
+        <div class="row">
+          <div class="sort-tab-item">
+            <a class="sort-tab-link active" href="#">New</a>
+          </div>
+          <div class="sort-tab-item">
+            <a class="sort-tab-link" href="#">Hot</a>
+          </div>
+          <div class="sort-tab-item">
+            <a class="sort-tab-link" href="#">Old</a>
+          </div>
+        </div>
+      </div>
 
-<% if @books %>
-<div class="card-columns">
-    <% @books.each do |book| %>
-      <%= render partial: 'shared/book_card', locals: { book: book } %>
-    <% end %>
+
+      <div class="card-columns">
+        <% @books.each do |book| %>
+        <%= render partial: 'shared/book_card', locals: { book: book } %>
+        <% end %>
+      </div>
+
+      <div class="digg_pagination">
+        <%= will_paginate @books, :container => false %>
+      </div>
+
+    </div>
+
+
+    <div class="col-2">
+      <br><br><br><br><br>
+      <div class="card d-flex align-items-stretch">
+        <div class="card-block" style="height: 3137px";>
+          <ul class="nav nav-tabs">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" id="Account">
+                All category
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Account">
+                <% @categories.each do |category| %>
+                  <%= link_to category.name, '#', :class => "dropdown-item" %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </div>
-<% else %>
-<div>
-  Library is empty now.
 </div>
-<% end %>
 

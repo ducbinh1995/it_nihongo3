@@ -9,6 +9,13 @@
           <%= link_to "Books", books_path, :class => "nav-link" %>
         </li>
 
+        <% if logged_in? and current_user.admin? %>
+          <li>
+            <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
+
+          </li>
+        <% end %>
+
         <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" id="Account">
@@ -20,12 +27,6 @@
               <div class="dropdown-divider"></div>
                 <%= link_to "Log out", logout_path, method: :delete, :class => "dropdown-item" %>
             </div>
-          </li>
-        <% end %>
-
-        <% if logged_in? and current_user.admin? %>
-          <li>
-            <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
           </li>
         <% end %>
 
