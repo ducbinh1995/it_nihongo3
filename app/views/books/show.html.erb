@@ -61,10 +61,12 @@
                           <p class="review-content"><%= simple_format(review.content) %></p>
                         </div>
                         <% @review = review %>
+                        <% if logged_in? %>
                         <%= render partial: 'likes/like_button',
                          locals: {review: @review} %>
+                         <% end %>
                         <span id="count-like-<%= @review.id %>">
-                          <%= @review.likes.count %>
+                          <%= @review.likes.count %> people like this
                         </span>
                       </div>
                     </div>

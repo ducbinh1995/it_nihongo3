@@ -36,11 +36,15 @@
       </div>
       <div class="content">
         <h4><%= @review.title %></h4>
-        <p class="review-content"><%= @review.content %></p>
+        <p class="review-content"><%= simple_format(@review.content) %></p>
       </div>
     </div>
-    <%= render partial: 'likes/like_button', locals: {review: @review} %>
-    <span id="count-like-<%= @review.id %>"> <%= @review.likes.count %></span>
+    <% if logged_in? %>
+      <%= render partial: 'likes/like_button', locals: {review: @review} %>
+    <% end %>
+    <span id="count-like-<%= @review.id %>">
+      <%= @review.likes.count %> people like this
+    </span>
     <% if logged_in? %>
     <div class="comment">
       <h4>Comment</h4>
