@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
-  resources :reviews
+  resources :reviews do
+    resources :comments, only: [:create, :destroy]
+    resources :likes, only: [ :create, :destroy ]
+  end
   get 'users/show'
 
   get 'sessions/new'

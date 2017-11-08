@@ -30,6 +30,9 @@ gem 'omniauth-facebook'
 gem 'devise'
 gem 'tinymce-rails'
 gem 'jquery-turbolinks'
+gem 'tether-rails'
+gem 'toastr-rails'
+gem 'font-awesome-rails'
 gem 'ratyrate', :github => 'wazery/ratyrate', :branch => 'master'
 
 group :development, :test do

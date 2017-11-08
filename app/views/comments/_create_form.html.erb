@@ -1,0 +1,12 @@
+<!-- Form for write comment -->
+<%= form_for([@review, @review.comments.new]) do |f| %>
+	<div class="form-group">
+		<%= f.text_field :content, class: "comment-box", :class => "form-control", placeholder: "Write comment ..." %>
+	</div>
+	<div class="form-group">
+  		<%= f.hidden_field :review_id, value: @review.id %>
+  	</div>
+  <div class="actions">
+    <%= f.submit "Create new comment", :class => "btn btn-primary" %>
+  </div>
+<% end %>

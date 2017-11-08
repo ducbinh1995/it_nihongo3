@@ -14,6 +14,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :create_activation_digest
 
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   class << self
     def digest string
@@ -91,6 +93,28 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < Settings.reset_time.hours.ago
+  end
+
+  def add_like?(review_id)
+    if has_like?(review_id)
+      return false
+    else
+      Like.create!(user_id: self.id, review_id: review_id)
+    end
+
+  end
+
+  def delete_like?(review_id)
+    unless has_like?(review_id)
+      return false
+    else
+      Like.where(user_id: self.id, review_id: review_id).delete_all
+      return true
+    end
+  end
+
+  def has_like?(review_id)
+    Like.exists?(user_id: self.id, review_id: review_id)
   end
 
   mount_uploader :avatar, AvatarUploader
