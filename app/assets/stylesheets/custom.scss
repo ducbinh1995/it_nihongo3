@@ -23,17 +23,40 @@ $gao_silver: #E6E6E6;
 }
 
 .body-bg {
-  padding: 0px 20px;
+  background-color: rgb(242, 242, 242);
 }
 
-body {
-  padding-top: 60px;
-  background-color: rgb(242, 242, 242);
+.header {
+  padding: 5px 70px;
 
-  .header {
-
-    padding: 5px 70px;
+  .brand {
+    margin: 0;
   }
+
+  .search-bar {
+    border-right: 0;
+  }
+
+  .search-button {
+    border:0;
+    background:transparent;
+  }
+
+  .input-group-addon {
+    border: 0;
+    background-color: #f50;
+  }
+}
+
+.btn-orange {
+  @extend .btn-primary;
+  background-color: #f50;
+}
+
+.body {
+  margin: 20px;
+  padding-top: 35px;
+  background-color: #ffffff;
 
   .login {
     padding: 20px;
@@ -65,12 +88,9 @@ body {
   }
 
   .books {
-    background-color: white;
     display: block;
     margin: 30px 30px;
     padding: 10px 20px;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    box-shadow: .1em .1em .5em rgba(0,0,0,.45);
 
     .card {
       border: 0;
@@ -94,12 +114,9 @@ body {
   }
 
   .sort-tab {
-    background-color: white;
     display: block;
     margin: 30px 30px;
     padding: 10px 30px;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    box-shadow: .1em .1em .5em rgba(0,0,0,.45);
 
     .row {
       border-bottom: 1px solid #f2f2f2;
@@ -117,7 +134,7 @@ body {
       }
 
       .active {
-        border-bottom: 1px solid red;
+        border-bottom: 1px solid #f50;
       }
     }
   }
@@ -125,74 +142,89 @@ body {
   .book-detail {
     background-color: white;
     padding: 0px 30px;
+  }
 
-    .content {
-      padding: 40px 60px;
-      padding-right: 150px;
+  .content {
+    padding: 40px 60px;
+    padding-right: 150px;
 
-      .left-section {
-        .image {
-          max-width: 100%;
-          height: auto;
-          border-radius: 8px;
-        }
-
-        .info {
-          padding-top: 30px;
-
-          .data {
-            color: #868e96;
-            padding-left: 10px;
-          }
-        }
+    .left-section {
+      .image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
       }
 
-      .right-section {
-        padding-left: 30px;
+      .info {
+        padding-top: 30px;
 
-        .reviews {
-          padding-top: 30px;
+        .data {
+          color: #868e96;
+          padding-left: 10px;
+        }
+      }
+    }
 
-          .point {
-            padding-left: 25px;
-            overflow: visible;
+    .right-section {
+      padding-left: 30px;
+
+      .reviews {
+        padding-top: 30px;
+
+        .point {
+          padding-left: 25px;
+          overflow: visible;
+        }
+
+        .review {
+          padding-top: 20px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .title {
+          padding-left: 30px;
+
+          a {
+            font-size: 16px;
+            color: rgb(33, 37, 41);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;;
+            font-weight: bold;
+            line-height: 30px;
           }
 
-          .review {
-            padding-top: 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+          a:link {
+            text-decoration: none;
           }
 
-          .title {
-            padding-left: 30px;
-
-            a {
-              font-size: 16px;
-              color: rgb(33, 37, 41);
-              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;;
-              font-weight: bold;
-              line-height: 30px;
-            }
-
-            a:link {
-              text-decoration: none;
-            }
-
-            a:visited {
-              text-decoration: none;
-            }
-
-            a:hover {
-              text-decoration: none;
-              background: #ffffff;
-              color: #09f;
-            }
+          a:visited {
+            text-decoration: none;
           }
 
-          .content {
-            padding: 10px 0px;
+          a:hover {
+            text-decoration: none;
+            background: #ffffff;
+            color: #09f;
           }
         }
+
+        .content {
+          padding: 10px 0px;
+        }
+      }
+    }
+  }
+
+  .review-detail {
+    .book {
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgb(229, 229, 229);
+    }
+
+    .review {
+      padding-top: 20px;
+
+      .content {
+        padding: 20px 0px;
       }
     }
   }
