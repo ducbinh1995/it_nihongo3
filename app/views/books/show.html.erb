@@ -24,7 +24,7 @@
         <div class = "info">
           <h5 class="title">Rate Point</h5>
           <%= rating_for @book, "original_score",
-            disable_after_rate: true, imdb_avg: true, round: true %>
+            disable_after_rate: true, imdb_avg: true, star: 10 %>
         </div>
       </div>
       <div class="col-md-9 right-section">
@@ -54,12 +54,18 @@
                         <h6 class="card-subtitle mb-2 text-muted">
                           <%= user.name %>
                           <div class="readonly-star">
-                            <%= rating_for_user @book, user, "original_score" %>
+                            <%= rating_for_user @book, user, "original_score", star: 10 %>
                           </div>
                         </h6>
                         <div class="content">
                           <p class="review-content"><%= simple_format(review.content) %></p>
                         </div>
+                        <% @review = review %>
+                        <%= render partial: 'likes/like_button',
+                         locals: {review: @review} %>
+                        <span id="count-like-<%= @review.id %>">
+                          <%= @review.likes.count %>
+                        </span>
                       </div>
                     </div>
                   </div>

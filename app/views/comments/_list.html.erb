@@ -1,0 +1,19 @@
+<% if @comments.count == 0 %>
+  <br><div class="alert alert-danger" role="alert">There's no comment yet</div>
+<% else %>
+  <% @comments.order("id desc").each do |comment|%>
+    <hr>
+    <%= display_avatar comment.user, "38x38" %>
+    <strong><%= link_to  comment.user.name, user_path(@review.user), class: "" %></strong>
+    <div>
+      <span class="pull-right">
+        <%= link_to [@review, comment], method: :delete, data: {confirm: "Are you sure?"} do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        <% end %>
+      </span>
+      <div style="margin-top:5px; margin-left:5px;"><%= comment.content %></div>
+    </div>
+
+  <% end %>
+<% end %>
+<br>

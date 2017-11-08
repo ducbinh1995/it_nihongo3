@@ -1,0 +1,3 @@
+$("#button-like-review-<%= @review.id %>").replaceWith("<%= j render partial: 'likes/like_button', locals: { review: @review } %>");
+
+$("#count-like-<%= @review.id %>").replaceWith("<span id=\"count-like-<%= @review.id %>\"> <%= @review.likes.count %></span>")

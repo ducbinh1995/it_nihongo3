@@ -1,0 +1,16 @@
+<% if current_user.has_like?(@review.id)%>
+  <%= link_to review_like_path(review_id: @review.id, id: 0),
+    remote: true,
+    method: 'delete',
+    id: "button-like-review-#{review.id}" do %>
+      <span class= "btn" title="Unlike"><i class="fa fa-heart like" aria-hidden="true"></i></span>
+  <% end %>
+<% else %>
+  <%= link_to review_likes_path(review_id: @review.id),
+    remote: true,
+    method: 'post',
+    id: "button-like-review-#{@review.id}" do %>
+      <span class= "btn" title="Like"><i class="fa fa-heart-o like" aria-hidden="true"></i></span>
+  <% end %>
+<% end %>
+

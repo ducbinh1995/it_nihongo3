@@ -12,6 +12,9 @@
 //
 //= require jquery3
 //= require jquery.turbolinks
+//= require tether
+//= require bootstrap-sprockets
+//= require toastr
 //= require popper
 //= require bootstrap
 //= require jquery_ujs

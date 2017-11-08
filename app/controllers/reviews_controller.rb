@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
   def show
     @book = @review.book
     @user = @review.user
+    @comments = @review.comments
   end
 
   # GET /reviews/new
