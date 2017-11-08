@@ -5,9 +5,9 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = if params[:term]
-      Book.where('title LIKE ?', "%#{params[:term]}%").paginate(page: params[:page], :per_page => 10)
+      Book.where('title LIKE ?', "%#{params[:term]}%").paginate(page: params[:page], :per_page => 12)
     else
-      Book.all.paginate(page: params[:page], :per_page => 10)
+      Book.all.paginate(page: params[:page], :per_page => 12)
     end
     @categories = Category.all
   end
@@ -15,8 +15,8 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @book = Book.find(params[:id])
-    @reviews = @book.reviews.paginate(page: params[:page], :per_page => 10)
+    @book = Book.find params[:id]
+    @reviews = @book.reviews.paginate page: params[:page], :per_page => 10
     @categories = Category.all
   end
 

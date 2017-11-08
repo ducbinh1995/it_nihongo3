@@ -1,22 +1,25 @@
 <div class="card">
   <div class="row">
+    <div class="col-md-4" style="background-image: url(<%= book.image.url %>); background-repeat: no-repeat; background-size: contain">
+    </div>
     <div class="col-md-8">
       <div class="card-block">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item card-head">
-            <h6 class="card-title"><%= book.title %></h4>
+          <li class="card-head">
+            <h6 class="dark-link">
+              <%= link_to book.title, book %>
+            </h6>
             <h6 class="card-subtitle mb-2 text-muted"><%= book.author %></h6>
             <p class="card-text">
-              <span class="fa fa-star rate-point"> 4.5/5</span>
+              <span class="fa fa-star rate-point">
+                <span class="text">
+                  <%= book.avg_rating_dimension_original_score book %> / 5
+                </span>
+              </span>
             </p>
-          </li>
-          <li class="list-group-item card-bottom">
-            <%= link_to "More Info", book, :class => "btn btn-info btn-block"%>
           </li>
         </ul>
       </div>
-    </div>
-    <div class="col-md-4" style="background-image: url(<%= book.image.url %>); background-repeat: no-repeat; background-size: contain">
     </div>
   </div>
 </div>

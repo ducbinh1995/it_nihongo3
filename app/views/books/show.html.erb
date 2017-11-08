@@ -1,4 +1,3 @@
-
 <%= javascript_include_tag 'ratyrate.js', "data-turbolinks-track": true %>
 
 <div class="book-detail">
@@ -6,6 +5,10 @@
     <div class="row">
       <div class="col-md-3 left-section">
         <%= image_tag @book.image.url, :class => "image" %>
+        <div class = "info">
+          <h5 class="title">Category</h5>
+          <nav class="data"><%= Category.find_by_id(@book.categoryid).name %></nav>
+        </div>
         <div class = "info">
           <h5 class="title">Publisher</h5>
           <nav class="data"><%= @book.publisher %></nav>
@@ -19,12 +22,10 @@
           <nav class="data"><%= @book.isbn %></nav>
         </div>
         <div class = "info">
-          <h5 class="title">Category</h5>
-          <nav class="data"><%= Category.find_by_id(@book.categoryid).name %></nav>
+          <h5 class="title">Rate Point</h5>
+          <%= rating_for @book, "original_score",
+            disable_after_rate: true, imdb_avg: true, round: true %>
         </div>
-        Votes avg: <%= rating_for @book, "original_score",
-        disable_after_rate: true, imdb_avg: true, round: true %>
-        Your vote : <%= rating_for_user @book, current_user, "original_score", star: 10 %>
       </div>
       <div class="col-md-9 right-section">
         <div class="card-block">
@@ -40,34 +41,39 @@
               </div>
               <div class="card-text reviews">
                 <h5>Reviews</h5>
+
                 <% @reviews.each do |review| %>
-                <% user = User.find(review.user_id) %>
-                <div class="review">
-                  <div class="author row">
-                    <div class="col-md-1 avatar">
-                      <%= display_avatar user, "50x50" %>
-                      <nav class="fa fa-star point row"> 5
-                      </nav>
-                    </div>
-                    <div class="col-md-10 title">
-                      <%= link_to review.title, review, :class => "card-title" %>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        <%= user.name %>
-                      </h6>
-                      <div class="content">
-                        <p class="review-content"><%= simple_format(review.content) %></p>
+                  <% user = User.find(review.user_id) %>
+                  <div class="review">
+                    <div class="author row">
+                      <div class="col-md-1 avatar">
+                        <%= display_avatar user, "50x50" %>
+                      </div>
+                      <div class="col-md-10 title">
+                        <%= link_to review.title, review, :class => "card-title" %>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <%= user.name %>
+                          <div class="readonly-star">
+                            <%= rating_for_user @book, user, "original_score" %>
+                          </div>
+                        </h6>
+                        <div class="content">
+                          <p class="review-content"><%= simple_format(review.content) %></p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 <% end %>
-                <div class="digg_pagination">
-                  <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
-                </div>
+
+                <% if @reviews.count > 10 %>
+                  <div class="digg_pagination">
+                    <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+                  </div>
+                <% end %>
 
               </div>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item no-border">
               <% if logged_in? and not current_user.admin? %>
               <%= link_to 'Write a Review',
               new_review_path(:bookid => params[:id]), :class => "btn btn-primary"%>

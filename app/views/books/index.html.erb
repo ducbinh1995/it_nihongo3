@@ -1,99 +1,47 @@
-
-<%= render partial: 'shared/searchbar' %>
-<br>
-
-<div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= image_tag "opera.jpg"%>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag "opera.jpg"%>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag "opera.jpg"%>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+<div class="slide">
+  <%= image_tag "book-slide.jpg", :class => "slide-image" %>
 </div>
 
-<div class="sort-tab">
-
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="books">
-          <div class="col">
-            <div class="sort-tab">
-              <div class="row">
-                <div class="sort-tab-item">
-                  <a class="sort-tab-link active" href="#">New</a>
-                </div>
-                <div class="sort-tab-item">
-                  <a class="sort-tab-link" href="#">Hot</a>
-                </div>
-                <div class="sort-tab-item">
-                  <a class="sort-tab-link" href="#">Old</a>
-                </div>
+<div class="books">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="sort-tab">
+        <div class="row">
+          <div class="sort-tab-item">
+            <a class="sort-tab-link active" href="#">Latest</a>
+          </div>
+          <div class="sort-tab-item">
+            <a class="sort-tab-link" href="#">High Rate</a>
+          </div>
+          <div class="sort-tab-item">
+            <a class="sort-tab-link" href="#">Random</a>
+          </div>
+          <div class="right">
+            <div class="dropdown">
+              <button class="btn btn-white btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Category
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <% @categories.each do |category| %>
+                    <%= link_to category.name,
+                    {:controller => "books", :action => "filter", :cate => category.id },
+                    :class => "dropdown-item" %>
+                <% end %>
               </div>
-            </div>
-            <div class="card-columns">
-              <% @books.each do |book| %>
-              <%= render partial: 'shared/book_card', locals: { book: book } %>
-              <% end %>
-            </div>
-
-            <div class="digg_pagination">
-              <%= will_paginate @books, :container => false %>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-2">
-        <br><br><br><br><br>
-        <div class="card">
-          <div class="card-block">
-            <nav class="nav flex-column">
+      <div class="card-columns">
+        <% @books.each do |book| %>
+        <%= render partial: 'shared/book_card', locals: { book: book } %>
+        <% end %>
+      </div>
 
-              <% if logged_in? and current_user.admin? %>
-              <li>
-                <%= link_to 'Add category', new_category_path,
-                :class => "nav-link" %>
-              </li>
-              <% end %>
-              <div class="card-block" style="height: 3137px";>
-                <ul class="nav nav-tabs">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" id="Account">
-                      All category
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="Account">
-                      <% @categories.each do |category| %>
-                      <%= link_to category.name, {:controller => "books", :action => "filter", :cate => category.id }, :class => "dropdown-item" %>
-                      <% end %>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
-        </div>
+      <div class="digg_pagination">
+        <%= will_paginate @books, :container => false %>
       </div>
     </div>
-
-
-
   </div>
 </div>
+
