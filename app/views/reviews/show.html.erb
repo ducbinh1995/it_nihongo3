@@ -1,37 +1,54 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-
-      <div class="card">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card-block">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <h4 class="card-title"><%= @review.book.title %></h4>
-                  <h6 class="card-subtitle mb-2 text-muted"><%= @review.book.author %></h6>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6" style="background-image: url(<%= @review.book.image.url %>); background-repeat: no-repeat; background-size: contain">
-          </div>
+<div class="review-detail">
+  <div class="content">
+    <div class="row book">
+      <div class="col-md-3 left-section">
+      <%= image_tag @book.image.url, :class => "image" %>
+      </div>
+      <div class="col-md-9 right-section">
+        <div class="card-block">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h4 class="card-title"><%= @book.title %></h4>
+              <h6 class="card-subtitle mb-2 text-muted"><%= @book.author %></h6>
+            </li>
+            <li class="list-group-item">
+              <div class="card-text description">
+                <h5>Description</h5>
+                <p><%= @book.description %></p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="col-6">
-      <h3>
-        <%= simple_format(@review.title) %>
-      </h3>
-
-      <p>
-        <%= simple_format(@review.content) %>
-      </p>
-
-      <% if logged_in? and @review.user == current_user %>
-      <%= link_to 'Edit', edit_review_path(@review) %> |
-      <% end %>
-      <%= link_to 'Back', @review.book %>
+    <div class="review">
+      <div class="row">
+        <div class="col-md-1 avatar">
+          <%= display_avatar @user, "50x50" %>
+        </div>
+        <div class="col-md-10 title">
+          <h6 class="card-title">
+            <b><%= @user.name %></b>
+            rate this book 5 <span class="fa fa-star"></span>
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">Post 2 days ago</h6>
+        </div>
+      </div>
+      <div class="content">
+        <h4><%= @review.title %></h4>
+        <p class="review-content"><%= @review.content %></p>
+      </div>
+    </div>
+    <div class="comment">
+      <h4>Comment</h4>
+      <div class="write-comment row">
+        <div class="col-md-1">
+          <%= display_avatar current_user, "38x38" %>
+        </div>
+        <div class="col-md-10">
+          <input type="text" class="form-control" placeholder="Write Your Comment">
+        </div>
+      </div>
     </div>
   </div>
 </div>

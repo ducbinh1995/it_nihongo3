@@ -60,14 +60,13 @@ end
 end
 
 books = Book.all
-users = User.all
+users = User.limit(5).offset 10
 
 users.each do |user|
-
   books.each do |book|
     Review.create!(
         title: Faker::Book.title+"  "+Faker::Book.author,
-        content: Faker::Lorem.paragraph,
+        content: Faker::Lorem.paragraph(20),
         user_id: user.id,
         book_id: book.id
       )

@@ -1,1 +1,37 @@
-<%= render 'form', review: @review %>
+<%= javascript_include_tag 'ratyrate.js', "data-turbolinks-track": true %>
+
+<div class="new-review">
+  <h4 class="title dark-link">
+    Write a review for
+    <%= link_to @book.title, @book, :class => "book-link"%>
+  </h4>
+  <%= form_for @review do |f| %>
+
+    <div class="form">
+      <div class="item">
+        <% if current_user %>
+          Rate for this book
+          <%= rating_for_user @book, @review, "original_score",
+            star: 5, disable_after_rate: false %>
+        <% end %>
+      </div>
+
+      <div class="item">
+        <%= label_tag "newReivewTitle", "Title" %>
+        <%= f.text_field :title, class: "form-control", :id => "newReivewTitle" %>
+      </div>
+
+      <div class="item">
+        <%= label_tag "newReivewContent", "Content" %>
+        <%= f.text_area :content, :class => "tinymce",
+          :rows => 10, :cols => 120%>
+        <%= tinymce :alternate %>
+      </div>
+
+      <%= f.hidden_field :book_id, value: params['bookid'] %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <br>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
