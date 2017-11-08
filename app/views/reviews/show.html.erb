@@ -39,6 +39,7 @@
         <p class="review-content"><%= @review.content %></p>
       </div>
     </div>
+    <% if logged_in? %>
     <div class="comment">
       <h4>Comment</h4>
       <div class="write-comment row">
@@ -50,5 +51,6 @@
         </div>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
