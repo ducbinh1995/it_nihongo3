@@ -11,8 +11,13 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery.turbolinks
 //= require popper
 //= require bootstrap
 //= require jquery_ujs
 //= require tinymce-jquery
-//= require_tree .
+//= require jquery.raty
+//= require ratyrate
+//= require_tree
+//= require turbolinks
+
