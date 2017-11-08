@@ -30,6 +30,12 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def filter
+    @books = Book.where('categoryid LIKE ?', "%#{params[:cate]}%").paginate(page: params[:page], :per_page => 10)
+    @categories = Category.all
+    render :index
+  end
+
   # POST /books
   # POST /books.json
   def create

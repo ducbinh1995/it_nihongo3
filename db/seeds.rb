@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 environment_seed_file = File.join(Rails.root, 'db', 'seeds', "#{Rails.env}.rb")
-
+file = File.open("users_list.txt", "w")
 def seed_image
   File.open(File.join(Rails.root, "/app/assets/images/book_default.jpg"))
 end
@@ -30,8 +30,13 @@ User.create!(name:  "Greate teacher Onizuka",
              admin: false,
              activated: true,
              activated_at: Time.zone.now)
+
+6.times do |n|
+    user = Category.create!(name: Faker::Book.genre)
+end
+
 15.times do |n|
-    User.create!(name:  Faker::LeagueOfLegends.champion,
+    user = User.create!(name:  Faker::LeagueOfLegends.champion,
              username: Faker::Superhero.name,
              gender: "male",
              email: Faker::Name.first_name+n.to_s+"@gmail.com",
@@ -40,6 +45,7 @@ User.create!(name:  "Greate teacher Onizuka",
              admin: false,
              activated: true,
              activated_at: Time.zone.now)
+    file.puts user.name + "\n" + user.email + "\n" + user.password + "\n\n\n"
 
     Book.create!(
         title: Faker::Book.title,
@@ -48,7 +54,7 @@ User.create!(name:  "Greate teacher Onizuka",
         isbn: Faker::Number.number(10),
         publisher: Faker::Book.publisher,
         publish_date: "02-02-1992",
-        categoryid: Faker::Number.number(2),
+        categoryid: Faker::Number.between(1, 6),
         description: Faker::Lorem.paragraph(8)
         )
 end

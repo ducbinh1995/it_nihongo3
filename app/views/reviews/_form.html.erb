@@ -7,7 +7,10 @@
 
       <%= "Title" %>
       <%= f.text_field :title, class: "form-control" %>
-
+      Speed : <%= imdb_style_rating_for @book, current_user %>
+      <% if current_user %>
+        Vote for this book: <%= rating_for @book, "original_score", enable_half: true, imdb_avg: true %>
+      <% end %>
       <%= "Content" %>
       <%= f.text_area :content, :class => "tinymce",
         :rows => 40, :cols => 120%>

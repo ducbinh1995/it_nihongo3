@@ -29,6 +29,8 @@ gem "figaro"
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'tinymce-rails'
+gem 'jquery-turbolinks'
+gem 'ratyrate', :github => 'wazery/ratyrate', :branch => 'master'
 
 group :development, :test do
   gem "rspec"

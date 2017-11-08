@@ -7,6 +7,13 @@ GIT
       execjs
       railties (>= 3.2)
 
+GIT
+  remote: https://github.com/wazery/ratyrate.git
+  revision: d61cfb73343e4b461f536e56c7b1bd1f7465d0a4
+  branch: master
+  specs:
+    ratyrate (1.2.2.alpha)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -300,6 +307,9 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     jshint (1.5.0)
       execjs (>= 1.4.0)
       multi_json (~> 1.0)
@@ -557,6 +567,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.5)
   jquery-rails (= 4.3.1)
+  jquery-turbolinks
   jshint
   listen (>= 3.0.5, < 3.2)
   mini_magick (= 4.7.0)
@@ -567,6 +578,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails-controller-testing (= 1.0.2)
   rails_best_practices
+  ratyrate!
   reek
   rspec
   rspec-collection_matchers

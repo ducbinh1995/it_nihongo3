@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :reviews
   get 'users/show'
 
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", :to => "sessions#create"
   get "/auth/failure", :to => "session#new"
 
+  get "/books/filter", to: 'books#filter'
   resources :users
   resources :books
   resources :account_activations, only: :edit
