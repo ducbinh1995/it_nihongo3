@@ -29,7 +29,9 @@
         <div class="col-md-10 title">
           <h6 class="card-title">
             <b><%= @user.name %></b>
-            rate this book 5 <span class="fa fa-star"></span>
+            rate this book
+            <%= rating_for_user @book, @user, "original_score",
+             {readonly: true}%>
           </h6>
           <h6 class="card-subtitle mb-2 text-muted">Post 2 days ago</h6>
         </div>
@@ -38,13 +40,13 @@
         <h4><%= @review.title %></h4>
         <p class="review-content"><%= simple_format(@review.content) %></p>
       </div>
+      <% if logged_in? %>
+        <%= render partial: 'likes/like_button', locals: {review: @review} %>
+      <% end %>
+      <span id="count-like-<%= @review.id %>">
+        <%= @review.likes.count %> people like this
+      </span>
     </div>
-    <% if logged_in? %>
-      <%= render partial: 'likes/like_button', locals: {review: @review} %>
-    <% end %>
-    <span id="count-like-<%= @review.id %>">
-      <%= @review.likes.count %> people like this
-    </span>
     <% if logged_in? %>
     <div class="comment">
       <h4>Comment</h4>

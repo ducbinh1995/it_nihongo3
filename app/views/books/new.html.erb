@@ -1,42 +1,94 @@
 <% provide :title, "New book" %>
-<h1><%= "Create Book" %></h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for @book do |f| %>
+<%= form_for @book do |f| %>
+<div class="new-book">
+  <h4 class="title">Create a new book</h4>
 
-      <%= "本の名" %>
-      <%= f.text_field :title, class: "form-control" %>
-      <br/>
-      <%= "本の作者" %>
-      <%= f.text_field :author, class: "form-control" %>
-      <br/>
+  <div class="row content">
+    <div class="col-md-3 left">
+      <%= image_tag "book_default.jpg", :class => "image", :id => "bookCover" %>
 
-      <%= "本のISBN" %>
-      <%= f.text_field :isbn, class: "form-control" %>
-      <br/>
+      <div class="upload-button">
+        <label for="book_image" class="btn btn-secondary">
+          <i class="fa fa-cloud-upload"></i> Change Cover
+        </label>
+        <input id="book_image" name="book[image]" type="file"/>
+        <%= f.file_field :image, :onchange => "onFileSelected(event)" %>
+      </div>
+    </div>
 
-      <%= "本の出版社" %>
-      <%= f.text_field :publisher, class: "form-control" %>
-      <br/>
+    <div class="col-md-9">
 
-      <%= "本の発売日" %>
-      <%= f.date_select :publish_date, class: "form-control" %>
-      <br/> <br/>
 
-      <%= "カテゴリー" %>
-      <%= f.select :categoryid,
-       options_from_collection_for_select(@categories,:id,:name),
-       :selected => params[:categoryid], class: "form-control" %>
-      <br/>
+        <div class="row item">
+          <div class="col-md-6">
+            <%= label_tag "newBookName", "Name" %>
+            <%= f.text_field :title, class: "form-control", :id => "newBookName" %>
+          </div>
 
-      <%= "本の写真" %>
-      <span class="picture">
-      <%= f.file_field :image %>
-      </span>
-      <br/> <br/>
+          <div class="col-md-6">
+            <%= label_tag "newBookAuthor", "Author" %>
+            <%= f.text_field :author, class: "form-control", :id => "newBookTitle" %>
+          </div>
+        </div>
 
-      <%= f.submit "Create book", class: "btn btn-primary" %>
-    <% end %>
+        <div class="row item">
+          <div class="col-md-6">
+            <%= label_tag "newBookPublisher", "Publisher" %>
+            <%= f.text_field :publisher, class: "form-control", :id => "newBookPublisher" %>
+          </div>
+
+          <div class="col-md-6">
+            <%= label_tag "ISBN"%>
+            <%= f.text_field :isbn, class: "form-control", :id => "ISBN" %>
+          </div>
+        </div>
+
+        <div class="row item">
+          <div class="col-md-6">
+            <%= label_tag "newBookDate", "Publisher Date"%>
+            <%= f.date_field :publish_date, class: "form-control", :id => "newBookDate" %>
+          </div>
+
+          <div class="col-md-6">
+            <%= label_tag "newBookCat", "Category" %>
+            <%= f.select :categoryid,
+         options_from_collection_for_select(@categories,:id,:name),
+         :selected => params[:categoryid], class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row item">
+          <div class="col-md-12">
+            <%= label_tag "newBookDesc", "Description"%>
+            <%= f.text_area :description, size: "60x12", :class => "form-control"%>
+          </div>
+        </div>
+
+        <%= "本の写真" %>
+        <span class="picture">
+        <%= f.file_field :image %>
+        </span>
+        <br/> <br/>
+
+        <%= f.submit "Create book", class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
+<% end %>
+
+<script type="text/javascript">
+  function onFileSelected(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+
+    var imgtag = document.getElementById("bookCover");
+    imgtag.title = selectedFile.name;
+
+    reader.onload = function(event) {
+      imgtag.src = event.target.result;
+    };
+
+    reader.readAsDataURL(selectedFile);
+  }
+</script>

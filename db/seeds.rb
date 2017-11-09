@@ -70,6 +70,16 @@ users.each do |user|
         user_id: user.id,
         book_id: book.id
       )
+
+    rate = Rate.create!(
+        rater_id: user.id,
+        rateable_type: "Book",
+        rateable_id: book.id,
+        stars: Faker::Number.between(1, 5),
+        dimension: "original_score"
+    )
+
+    book.update_rate_average(rate.stars, "original_score");
   end
 end
 
