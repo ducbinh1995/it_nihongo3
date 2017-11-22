@@ -3,51 +3,53 @@
 </center>
 
 <!--The Grid -->
-  <div class="w3-row-padding">
+<div class="w3-row-padding">
 
-     <!--Left Column -->
-    <div class="w3-third">
+   <!--Left Column -->
+  <div class="w3-third">
 
-      <div class="w3-white w3-text-black w3-card-4" >
-              <!--avatar-->
-        <!--info-->
-        <div class="w3-container">
-          <h3 class="w3-text-teal "> <%= "ユーザー名:" %> <%= @user.name %></h3>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "メールアドレス:" %> <%= @user.email %></p>
-          <p><i class="fa fa-intersex fa-fw w3-margin-right w3-large w3-text-teal"></i>
-               <%= "性別:" %>
-               <% if @user.gender == "0" %>
-                  Female
-               <% else %>
-                  Male
-               <% end %>
-          </p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "写真" %>　</p>
-          <div class="image_size w3-center">
-            <% if @user.avatar.present? %>
-                <%= image_tag @user.avatar, :size => "360x360" %>
-            <% else %>
-         	    <% if @user.gender == "0" %>
-                    <%= image_tag "female.png" %>
-                <% else %>
-                    <%= image_tag "male.png" %>
-                <% end %>
-            <% end %>
-          </div>
-          <br/>
-          <!--button-->
-        <p>
-            <% if logged_in? && (@user.id == current_user.id) %>
-               <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-default" %>
-            <% end %>
+    <div class="w3-white w3-text-black w3-card-4" >
+            <!--avatar-->
+      <!--info-->
+      <div class="w3-container">
+        <h3 class="w3-text-teal "> <%= "ユーザー名:" %> <%= @user.name %></h3>
+        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "メールアドレス:" %> <%= @user.email %></p>
+        <p><i class="fa fa-intersex fa-fw w3-margin-right w3-large w3-text-teal"></i>
+             <%= "性別:" %>
+             <% if @user.gender == "0" %>
+                Female
+             <% else %>
+                Male
+             <% end %>
         </p>
-
+        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "写真" %>　</p>
+        <div class="image_size w3-center">
+          <% if @user.avatar.present? %>
+              <%= image_tag @user.avatar, :size => "360x360" %>
+          <% else %>
+       	    <% if @user.gender == "0" %>
+                  <%= image_tag "female.png" %>
+              <% else %>
+                  <%= image_tag "male.png" %>
+              <% end %>
+          <% end %>
         </div>
+        <br/>
+        <!--button-->
+      <p>
+          <% if logged_in? && (@user.id == current_user.id) %>
+             <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-default" %>
+          <% end %>
+      </p>
+
       </div>
-      <br>
-
-     <!--End Left Column -->
     </div>
+    <br>
 
-   <!--End Grid -->
+   <!--End Left Column -->
   </div>
+
+ <!--End Grid -->
+</div>
+
+<%= render 'follow_form' if logged_in? %>
