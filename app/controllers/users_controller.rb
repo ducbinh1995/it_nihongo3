@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'will_paginate/array'
   before_action :admin_user, only: :destroy
 
   def new
@@ -19,6 +20,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @myreviews = Review.where('user_id LIKE ?', "#{@user.id}").paginate(page: params[:page], :per_page => 10)
+    @listlikereviews = []
+    @likes = @user.likes
+    @likes.each do |like|
+      @listlikereviews.push like.review
+    end
+    @listlikereviews.paginate(page: params[:page], :per_page => 10)
   end
 
   def edit

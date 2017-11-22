@@ -1,55 +1,113 @@
-<center>
-    <h1>USER PROFILE</h1>
-</center>
-
-<!--The Grid -->
-<div class="w3-row-padding">
-
-   <!--Left Column -->
-  <div class="w3-third">
-
-    <div class="w3-white w3-text-black w3-card-4" >
-            <!--avatar-->
-      <!--info-->
-      <div class="w3-container">
-        <h3 class="w3-text-teal "> <%= "ユーザー名:" %> <%= @user.name %></h3>
-        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "メールアドレス:" %> <%= @user.email %></p>
-        <p><i class="fa fa-intersex fa-fw w3-margin-right w3-large w3-text-teal"></i>
-             <%= "性別:" %>
-             <% if @user.gender == "0" %>
-                Female
-             <% else %>
-                Male
-             <% end %>
-        </p>
-        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= "写真" %>　</p>
-        <div class="image_size w3-center">
-          <% if @user.avatar.present? %>
-              <%= image_tag @user.avatar, :size => "360x360" %>
-          <% else %>
-       	    <% if @user.gender == "0" %>
-                  <%= image_tag "female.png" %>
-              <% else %>
-                  <%= image_tag "male.png" %>
-              <% end %>
-          <% end %>
-        </div>
-        <br/>
-        <!--button-->
-      <p>
-          <% if logged_in? && (@user.id == current_user.id) %>
-             <%= link_to "プロフィールを変更する",edit_user_path(current_user), class: "btn btn-default" %>
-          <% end %>
-      </p>
-
-      </div>
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-10"><h1><%= @user.name %></h1></div>
+    	<div class="col-sm-2">
+    	    <a href="/users" class="pull-right">
+    	        <% if @user.avatar.present? %>
+                    <%= image_tag @user.avatar, :size => "100x100" %>
+                <% else %>
+ 	                <% if @user.gender == "0" %>
+                        <%= image_tag "female.png", :size => "100x100" %>
+                    <% else %>
+                        <%= image_tag "male.png", :size => "100x100" %>
+                    <% end %>
+                <% end %>
+    	    </a>
+    	</div>
     </div>
-    <br>
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Profile</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mail</strong></span> <%= @user.email%></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Gender</strong></span>
+            <% if @user.gender == "0" %>
+                Female
+            <% else %>
+                Male
+            <% end %></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span><%= @user.username %></li>
+            <li class="list-group-item text-right"><span class="pull-left"><%= render 'follow_form' if logged_in? %></li>
+            
+          </ul> 
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+          
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">My reviews</a></li>
+            <% if logged_in? and @user.id == current_user.id %>
+            <li><a href="#messages" data-toggle="tab">Liked reviews</a></li>
+            <li><a href="#settings" data-toggle="tab">Follow user</a></li>
+            <% end %>
+          </ul>
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody id="items">
+                    <% @myreviews.each do |review| %>
+                    <tr>
+                      <td>
+                        <div class="col-md-10 title">
+                          <%= link_to review.title, review, :class => "card-title" %>
+                          <p class="review-content"><%= review.content[0...100] %>...</p>
+                        </div>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                <hr>
+                <% if @myreviews.count > 10 %>
+                  <div class="digg_pagination">
+                    <%= will_paginate @myreviews, renderer: BootstrapPagination::Rails %>
+                  </div>
+                <% end %>
+              </div><!--/table-resp-->
+              
+             </div><!--/tab-pane-->
+             
+             <div class="tab-pane" id="messages">
+               <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody id="items">
+               <% @listlikereviews.each do |like| %>
+                 <tr>
+                    <td>
+                      <div class="col-md-10 title">
+                        <%= link_to like.title, like, :class => "card-title" %>
+                        <p class="review-content"><%= like.content[0...100] %>...</p>
+                      </div>
+                    </td>
+                  </tr>
+               <% end %>
+               </tbody>
+               </table>
+               <hr>
+                <% if @listlikereviews.count > 10 %>
+                  <div class="digg_pagination">
+                    <%= will_paginate @listlikereviews, renderer: BootstrapPagination::Rails %>
+                  </div>
+                <% end %>
+              </div>
+             </div><!--/tab-pane-->
+             
+             <div class="tab-pane" id="settings">
+                 <% @user.following.each do |followuser| %>
+                   <li class="list-group-item text-left">
+                   <div class="col-md-10 title">
+                     <%= link_to followuser.name, followuser%>
+                   </div>
+                   </li>
+                 <% end %>
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
 
-   <!--End Left Column -->
+        </div><!--/col-9-->
+    </div><!--/row-->
   </div>
 
- <!--End Grid -->
-</div>
-
-<%= render 'follow_form' if logged_in? %>
