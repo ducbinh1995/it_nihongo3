@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", :to => "sessions#create"
   get "/auth/failure", :to => "session#new"
   get "/books/filter", to: 'books#filter'
+  get "/books/delete", to: "books#index"
+  delete "/reviews", to: "books#show"
 
   resources :reviews do
     resources :comments, only: [:create, :destroy]

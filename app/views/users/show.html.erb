@@ -29,22 +29,29 @@
                 Male
             <% end %></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span><%= @user.username %></li>
-            <li class="list-group-item text-right"><span class="pull-left"><%= render 'follow_form' if logged_in? %></li>
+            <li class="list-group-item text-right"><span class="pull-left">
+              <%= render 'follow_form' if logged_in? %>
+              <% if @user.id == current_user.id %>
+                <%= link_to "Edit Info", edit_user_path(current_user), class:"btn btn_primary"%>  
+              <% end %>
+              </li>
 
           </ul>
 
         </div><!--/col-3-->
     	<div class="col-sm-9">
           <nav class="navbar navbar-expand-sm bg-light">
-            <ul class="navbar-nav">
-              <li class="active navbar-item">
-                <a class="nav-link" href="#home" data-toggle="tab">My reviews</a>
+            <ul class="nav nav-tabs">
+              <li class="navbar-item">
+                <a class="nav-link active" href="#home" data-toggle="tab">My reviews</a>
               </li>
               <% if logged_in? and @user.id == current_user.id %>
               <li class="navbar-item">
-                <a class="nav-link" href="#messages" data-toggle="tab">Liked reviews</a></li>
+                <a class="nav-link" href="#messages" data-toggle="tab">Liked reviews</a>
+              </li>
               <li class="navbar-item">
-                <a class="nav-link" href="#settings" data-toggle="tab">Follow user</a></li>
+                <a class="nav-link" href="#settings" data-toggle="tab">Follow user</a>
+              </li>
               <% end %>
             </ul>
           </nav>
@@ -80,17 +87,17 @@
                <div class="table-responsive">
                 <table class="table table-hover">
                   <tbody id="items">
-               <% @listlikereviews.each do |like| %>
-                 <tr>
-                    <td>
-                      <div class="col-md-10 title">
-                        <%= link_to like.title, like, :class => "card-title" %>
-                        <p class="review-content"><%= like.content[0...100] %>...</p>
-                      </div>
-                    </td>
-                  </tr>
-               <% end %>
-               </tbody>
+                     <% @listlikereviews.each do |like| %>
+                       <tr>
+                          <td>
+                            <div class="col-md-10 title">
+                              <%= link_to like.title, like, :class => "card-title" %>
+                            <p class="review-content"><%= like.content[0...100] %>...</p>
+                            </div>
+                          </td>
+                        </tr>
+                     <% end %>
+                  </tbody>
                </table>
                <hr>
                 <% if @listlikereviews.count > 10 %>

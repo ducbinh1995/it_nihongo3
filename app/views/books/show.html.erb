@@ -88,6 +88,7 @@
               new_review_path(:bookid => params[:id]), :class => "btn btn-primary"%>
               <% else %>
               <%= link_to 'Edit Info', edit_book_path(@book), :class => "btn btn-info" %>
+              <%= link_to 'Delete book', book_path(@book), method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-info" %>
               <% end %>
             </li>
           </ul>

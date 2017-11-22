@@ -60,6 +60,9 @@
         </div>
       </div>
     </div>
+    <% if current_user.admin? %>
+      <%= link_to 'Delete review', review, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-info" %>
+    <% end %>
     <% end %>
   </div>
 </div>
