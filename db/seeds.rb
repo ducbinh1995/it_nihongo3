@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 environment_seed_file = File.join(Rails.root, 'db', 'seeds', "#{Rails.env}.rb")
 file = File.open("users_list.txt", "w")
-def seed_image
-  File.open(File.join(Rails.root, "/app/assets/images/book_default.jpg"))
+def seed_image number
+  File.open(File.join(Rails.root, "/app/assets/images/book_default_#{number}.jpg"))
 end
 
 User.create!(name:  "Greate teacher Onizuka",
@@ -35,6 +35,8 @@ User.create!(name:  "Greate teacher Onizuka",
     user = Category.create!(name: Faker::Book.genre)
 end
 
+number = 1
+
 15.times do |n|
     user = User.create!(name:  Faker::LeagueOfLegends.champion,
              username: Faker::Superhero.name,
@@ -50,13 +52,15 @@ end
     Book.create!(
         title: Faker::Book.title,
         author: Faker::Book.author,
-        image: seed_image,
+        image: seed_image(number),
         isbn: Faker::Number.number(10),
         publisher: Faker::Book.publisher,
         publish_date: "02-02-1992",
         categoryid: Faker::Number.between(1, 6),
         description: Faker::Lorem.paragraph(8)
         )
+
+    number = number+1
 end
 
 books = Book.all
