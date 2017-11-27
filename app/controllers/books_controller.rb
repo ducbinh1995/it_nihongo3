@@ -12,6 +12,8 @@ class BooksController < ApplicationController
       Book.all.paginate(page: params[:page], :per_page => 12)
     end
     @categories = Category.all
+    @users = User.all
+    @reviews = Review.all
   end
 
   # GET /books/1

@@ -1,3 +1,6 @@
+<% if logged_in? and current_user.admin? %>
+  <%= render "books/admin_form" %>
+<% else %>
 <div class="slide">
   <%= image_tag "book-slide.jpg", :class => "slide-image" %>
 </div>
@@ -44,4 +47,5 @@
     </div>
   </div>
 </div>
+<% end %>
 

@@ -1,0 +1,79 @@
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked admin-menu list-group">
+                <li class="list-group-item active"><a href="#" data-target-id="statistic"><i class="fa fa-bar-chart-o fa-fw"></i>Statistics</a></li>
+                <li class="list-group-item" ><a href="#" data-target-id="user"><i class="fa fa-users fa-fw"></i>Users</a></li>
+                <li class="list-group-item"><a href="#" data-target-id="category"><i class="fa fa-tags fa-fw"></i>Categories</a></li>
+                <li class="list-group-item"><a href="#" data-target-id="book"><i class="fa fa-book fa-fw"></i>Books</a></li>
+                <li class="list-group-item"><a href="#" data-target-id="review"><i class="fa fa-wpforms fa-fw"></i>Reviews</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 well admin-content" id="statistic">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="circle-tile ">
+                            <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
+                            <div class="circle-tile-content dark-blue">
+                                <div class="circle-tile-description text-faded"> Users</div>
+                                <div class="circle-tile-number text-faded "><%= @users.count %></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="circle-tile ">
+                            <a href="#"><div class="circle-tile-heading red"><i class="fa fa-tags fa-fw fa-3x"></i></div></a>
+                            <div class="circle-tile-content red">
+                                <div class="circle-tile-description text-faded"> Categories</div>
+                                <div class="circle-tile-number text-faded "><%= @categories.count %></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="circle-tile ">
+                            <a href="#"><div class="circle-tile-heading green"><i class="fa fa-book fa-fw fa-3x"></i></div></a>
+                            <div class="circle-tile-content green">
+                                <div class="circle-tile-description text-faded"> Books</div>
+                                <div class="circle-tile-number text-faded "><%= @books.count %></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="circle-tile ">
+                            <a href="#"><div class="circle-tile-heading yellow"><i class="fa fa-wpforms fa-fw fa-3x"></i></div></a>
+                            <div class="circle-tile-content yellow">
+                                <div class="circle-tile-description text-faded"> Reviews</div>
+                                <div class="circle-tile-number text-faded "><%= @reviews.count %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="user">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Real Name</th>
+                        <th>Username</th>
+                        <th style="width: 36px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                        <% unless user.id == 1 %>
+                            <tr>
+                                <td><%=user.id%></td>
+                                <td><%=user.username%></td>
+                                <td><%=user.name%></td>
+                            </tr>
+                        <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
