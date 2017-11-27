@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  notify_to :users
   root "books#index"
 
   post '/rate' => 'rater#create', :as => 'rate'

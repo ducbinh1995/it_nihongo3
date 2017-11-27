@@ -34,6 +34,7 @@ gem 'tether-rails'
 gem 'toastr-rails'
 gem 'font-awesome-rails'
 gem 'ratyrate', :github => 'wazery/ratyrate', :branch => 'master'
+gem 'activity_notification'
 
 group :development, :test do
   gem "rspec"
