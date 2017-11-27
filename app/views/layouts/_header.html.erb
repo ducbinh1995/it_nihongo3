@@ -9,7 +9,7 @@
           <form class="navbar-form navbar-left mx-auto">
             <%= form_tag(books_path, :method => "get", id: "search-form") do %>
             <div class="input-group">
-              <%= text_field_tag :term, params[:term], placeholder: "Search Books ...", :class => "form-control search-bar", :size => "40" %>
+              <%= text_field_tag :term, params[:term], placeholder: "Search", :class => "form-control search-bar", :size => "40" %>
               <span class="input-group-addon">
                 <button type="submit" class="search-button">
                   <span class="fa fa-search"></span>
@@ -22,20 +22,19 @@
       </ul>
       <ul class="navbar-nav header-right">
         <li>
-          <%= link_to "Books", books_path, :class => "nav-link" %>
-        </li>
-
-        <% if logged_in? and current_user.admin? %>
-          <li>
+          <% if logged_in? and current_user.admin? %>
             <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
-
-          </li>
-        <% end %>
-
+          <% end %>
+        </li>
         <% if logged_in? %>
-          <li class="nav-item dropdown">
+          <li class="item">
+            <span>
+              <%= display_avatar current_user, "30x30", "image" %>
+            </span>
+          </li>
+          <li class="nav-item dropdown item">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" id="Account">
-              Account
+              <%= current_user.name %>
             </a>
             <div class="dropdown-menu" aria-labelledby="Account">
                 <%= link_to "Profile", user_path(current_user), :class => "dropdown-item" %>
@@ -44,8 +43,13 @@
                 <%= link_to "Log out", logout_path, method: :delete, :class => "dropdown-item" %>
             </div>
           </li>
+          <li class="item">
+            <div id="notifications_in_header">
+              <%= render_notifications_of current_user,
+                index_content: :with_attributes %>
+            </div>
+          </li>
         <% end %>
-
         <% if not logged_in? %>
           <li class="nav-item">
             <li><%= link_to "Log in", login_path, :class => "nav-link" %></li>

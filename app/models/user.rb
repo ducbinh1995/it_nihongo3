@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   ratyrate_rater
   has_secure_password
+  acts_as_notification_target
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 

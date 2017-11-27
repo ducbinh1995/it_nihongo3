@@ -8,7 +8,9 @@
         <div class="card-block">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <h4 class="card-title"><%= @book.title %></h4>
+              <h6 class="card-title dark-link title">
+                <%= link_to @book.title, @book %>
+              </h6>
               <h6 class="card-subtitle mb-2 text-muted"><%= @book.author %></h6>
             </li>
             <li class="list-group-item">
@@ -28,12 +30,14 @@
         </div>
         <div class="col-md-10 title">
           <h6 class="card-title">
-            <b><%= @user.name %></b>
+            <%= link_to @user.name, @user %>
             rate this book
             <%= rating_for_user @book, @user, "original_score",
              {readonly: true}%>
           </h6>
-          <h6 class="card-subtitle mb-2 text-muted">Post 2 days ago</h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <%= distance_of_time_in_words @review.created_at, Time.now %>
+          </h6>
         </div>
       </div>
       <div class="content">
@@ -44,8 +48,8 @@
         <%= render partial: 'likes/like_button', locals: {review: @review} %>
       <% end %>
       <span id="count-like-<%= @review.id %>">
-        <%= @review.likes.count %> people like this
-      </span>
+        <%= @review.likes.count %>
+      </span> people like this
     </div>
     <% if logged_in? %>
     <div class="comment">
