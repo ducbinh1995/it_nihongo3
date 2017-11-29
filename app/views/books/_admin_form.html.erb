@@ -174,5 +174,44 @@
         </tbody>
       </table>
     </div>
+    <div class="col-md-9 well admin-content" id="review">
+      <table class="table table-striped custab">
+        <thead>
+            <tr>
+            <th>Name and Description</th>
+            <th>Rate</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @reviews.each do |review| %>
+            <tr>
+                <% user = User.find(review.user_id) %>
+                <% book = Book.find(review.book_id) %>
+                <td>
+                    <%= link_to review.title, review %>
+                    <div class="mic-info">
+                        By: <%= user.name %>
+                    </div>
+                    <%= review.content[0...80] %>...
+                </td>
+                <td>
+                    <div class="readonly-star">
+                        <%= rating_for_user book, user, "original_score",
+                              { :star => 5 } %>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <%= form_for review, :html => {:method => "delete"} do |f|%>
+                    <%= button_tag( :class => "btn btn-danger btn-sm") do %>
+                      <span class="fa fa-times fa-fw"></span>Delete
+                    <% end %>
+                  <% end %>
+                </td>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>    
+    </div>
   </div>
 </div>
