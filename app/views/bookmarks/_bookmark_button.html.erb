@@ -1,0 +1,22 @@
+<% if current_user.bookmark?(@book.id)%>
+  <%= link_to book_bookmark_path(book_id: @book.id, id: 0),
+    remote: true,
+    method: 'delete',
+    id: "button-bookmark-#{book.id}" do %>
+      <span class= "btn btn-secondary" title="Unsubscribe">
+        <i class="fa fa-bookmark like" aria-hidden="true"></i>
+        Unsubscribe
+      </span>
+  <% end %>
+<% else %>
+  <%= link_to book_bookmarks_path(book_id: book.id),
+    remote: true,
+    method: 'post',
+    id: "button-bookmark-#{@book.id}" do %>
+      <span class= "btn btn-primary" title="Bookmark">
+        <i class="fa fa-bookmark-o like" aria-hidden="true"></i>
+        Bookmark
+      </span>
+  <% end %>
+<% end %>
+

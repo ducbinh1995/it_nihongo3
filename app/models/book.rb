@@ -1,7 +1,12 @@
 class Book < ApplicationRecord
   mount_uploader :image, PictureUploader
-  has_many :reviews, dependent: :destroy
   ratyrate_rateable "original_score"
+
+  has_many :reviews, dependent: :destroy
+
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_users, through: :bookmarks, source: :user
+
 
   def overall_ratings(book)
     array = Rate.where(rateable_id: id, rateable_type: 'Book')

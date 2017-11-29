@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     resources :likes, only: [ :create, :destroy ]
   end
   resources :users
-  resources :books
+  resources :books do
+    resources :bookmarks, only: [:create, :destroy]
+  end
   resources :account_activations, only: :edit
   resources :password_resets, except: %i(index show destroy)
   resources :categories

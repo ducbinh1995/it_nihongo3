@@ -18,8 +18,16 @@ class User < ApplicationRecord
   before_create :create_activation_digest
 
   has_one :review, dependent: :destroy
+
   has_many :comments, dependent: :destroy
+  has_many :commented_reviews, through: :comments, source: :review
+
   has_many :likes, dependent: :destroy
+  has_many :liked_reviews, through: :likes, source: :review
+
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_books, through: :bookmarks, source: :book
+
   has_many :active_relationships, class_name: "Relationship",
     foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship",
@@ -137,6 +145,28 @@ class User < ApplicationRecord
 
   def has_like?(review_id)
     Like.exists?(user_id: self.id, review_id: review_id)
+  end
+
+  def add_bookmark(book_id)
+    if bookmark?(book_id)
+      return false
+    else
+      Bookmark.create!(user_id: self.id, book_id: book_id)
+    end
+
+  end
+
+  def unsubscribe?(book_id)
+    unless bookmark?(book_id)
+      return false
+    else
+      Bookmark.where(user_id: self.id, book_id: book_id).delete_all
+      return true
+    end
+  end
+
+  def bookmark?(book_id)
+    Bookmark.exists?(user_id: self.id, book_id: book_id)
   end
 
   mount_uploader :avatar, AvatarUploader
