@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to root_path}
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to root_path}
       format.json { head :no_content }
     end
   end

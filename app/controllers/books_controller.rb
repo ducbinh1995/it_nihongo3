@@ -12,6 +12,7 @@ class BooksController < ApplicationController
       Book.all.paginate(page: params[:page], :per_page => 12)
     end
     @categories = Category.all
+    @new_category = Category.new
     @users = User.all
     @reviews = Review.all
   end

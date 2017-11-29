@@ -1,133 +1,178 @@
-<hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-md-3">
-            <ul class="nav nav-pills nav-stacked admin-menu list-group">
-                <li class="list-group-item active"><a href="#" data-target-id="statistic"><i class="fa fa-bar-chart-o fa-fw"></i>Statistics</a></li>
-                <li class="list-group-item" ><a href="#" data-target-id="user"><i class="fa fa-users fa-fw"></i>Users</a></li>
-                <li class="list-group-item"><a href="#" data-target-id="category"><i class="fa fa-tags fa-fw"></i>Categories</a></li>
-                <li class="list-group-item"><a href="#" data-target-id="book"><i class="fa fa-book fa-fw"></i>Books</a></li>
-                <li class="list-group-item"><a href="#" data-target-id="review"><i class="fa fa-wpforms fa-fw"></i>Reviews</a></li>
-            </ul>
-        </div>
-        <div class="col-md-9 well admin-content" id="statistic">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="circle-tile ">
-                            <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
-                            <div class="circle-tile-content dark-blue">
-                                <div class="circle-tile-description text-faded"> Users</div>
-                                <div class="circle-tile-number text-faded "><%= @users.count %></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="circle-tile ">
-                            <a href="#"><div class="circle-tile-heading red"><i class="fa fa-tags fa-fw fa-3x"></i></div></a>
-                            <div class="circle-tile-content red">
-                                <div class="circle-tile-description text-faded"> Categories</div>
-                                <div class="circle-tile-number text-faded "><%= @categories.count %></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="circle-tile ">
-                            <a href="#"><div class="circle-tile-heading green"><i class="fa fa-book fa-fw fa-3x"></i></div></a>
-                            <div class="circle-tile-content green">
-                                <div class="circle-tile-description text-faded"> Books</div>
-                                <div class="circle-tile-number text-faded "><%= @books.count %></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="circle-tile ">
-                            <a href="#"><div class="circle-tile-heading yellow"><i class="fa fa-wpforms fa-fw fa-3x"></i></div></a>
-                            <div class="circle-tile-content yellow">
-                                <div class="circle-tile-description text-faded"> Reviews</div>
-                                <div class="circle-tile-number text-faded "><%= @reviews.count %></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-9 well admin-content" id="user">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Real Name</th>
-                        <th>Username</th>
-                        <th style="width: 36px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @users.each do |user| %>
-                        <% unless user.id == 1 %>
-                            <tr>
-                                <td><%=user.id%></td>
-                                <td><%=user.username%></td>
-                                <td><%=user.name%></td>
-                            </tr>
-                        <% end %>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-9 well admin-content" id="category">
-            <div class="container">
-                <div class="row col-md-9 col-md-offset-2 custyle">
-                    <table class="table table-striped custab">
-                        <thead>
-                            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
-                            <tr>
-                                <th>#</th>
-                                <th>Title</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @categories.each do |category| %>
-                                <tr>
-                                    <td><%= category.id %></td>
-                                    <td><%= category.name %></td>
-                                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="fa fa-pencil-square-o fa-fw"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="fa fa-times fa-fw"></span> Del</a></td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9 well admin-content" id="book">
-            <table class="table">
-                <tbody>
-                    <% @books.each do |book| %>
-                    <tr>
-                        <td>
-                            <span>
-                                <img width="60" class="img-circle" alt="User Avatar" src= <%=book.image.url%> >
-                            </span>
-                        </td>
-                        <td >
-                            <%= link_to book.title, book %>
-                            <p> 
-                                <%= book.description[0...100] %>...
-                            </p>
-                        </td>
-                        <td class="text-center">
-                            <h2> <%= book.reviews.count %> <small> reviews </small></h2>
-                        </td>
-                        <td class="text-center">
-                            <h5 class="title">Rate Point</h5>
-                            <%= rating_for book, "original_score",
-                            {readonly: true, imdb_avg: true} %>
-                        </td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
+<div class="bootstrap snippet admin-page">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav nav-pills nav-stacked admin-menu list-group">
+        <li class="list-group-item active">
+          <a href="#" data-target-id="statistic">
+            <i class="fa fa-bar-chart-o fa-fw"></i>
+            Statistics
+          </a>
+        </li>
+        <li class="list-group-item" >
+          <a href="#" data-target-id="user">
+            <i class="fa fa-users fa-fw"></i>
+            Users
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="#" data-target-id="category">
+            <i class="fa fa-tags fa-fw"></i>
+            Categories
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="#" data-target-id="book">
+            <i class="fa fa-book fa-fw">
+            </i>
+            Books
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="#" data-target-id="review">
+            <i class="fa fa-wpforms fa-fw"></i>
+            Reviews
+          </a>
+        </li>
+      </ul>
     </div>
+    <div class="col-md-9 well admin-content" id="statistic">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+              <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
+              <div class="circle-tile-content dark-blue">
+                <div class="circle-tile-description text-faded"> Users</div>
+                <div class="circle-tile-number text-faded "><%= @users.count %></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+              <a href="#"><div class="circle-tile-heading red"><i class="fa fa-tags fa-fw fa-3x"></i></div></a>
+              <div class="circle-tile-content red">
+                <div class="circle-tile-description text-faded"> Categories</div>
+                <div class="circle-tile-number text-faded "><%= @categories.count %></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+              <a href="#"><div class="circle-tile-heading green"><i class="fa fa-book fa-fw fa-3x"></i></div></a>
+              <div class="circle-tile-content green">
+                <div class="circle-tile-description text-faded"> Books</div>
+                <div class="circle-tile-number text-faded "><%= @books.count %></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+              <a href="#"><div class="circle-tile-heading yellow"><i class="fa fa-wpforms fa-fw fa-3x"></i></div></a>
+              <div class="circle-tile-content yellow">
+                <div class="circle-tile-description text-faded"> Reviews</div>
+                <div class="circle-tile-number text-faded "><%= @reviews.count %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 well admin-content" id="user">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Real Name</th>
+            <th>Username</th>
+            <th style="width: 36px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <% unless user.id == 1 %>
+          <tr>
+            <td><%=user.id%></td>
+            <td><%=user.username%></td>
+            <td><%=user.name%></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-9 well admin-content" id="category">
+
+      <div class="container">
+        <%= form_for @new_category, :html => {:class => "form-inline"} do |f|%>
+          <%= f.text_field :name,
+            {:class => "form-control mb-2 mr-sm-2 mb-sm-0",
+             :placeholder => "Category Name",
+             :id => :name} %>
+          <%= f.submit "Add", class: "btn btn-primary" %>
+        <% end %>
+        <div class="row col-md-9 col-md-offset-2 custyle">
+          <table class="table table-striped custab">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td class="text-center">
+                  <%= form_for category, :html => {:method => "delete"} do |f|%>
+                    <%= button_tag( :class => "btn btn-danger btn-sm") do %>
+                      <span class="fa fa-times fa-fw"></span>Delete
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 well admin-content" id="book">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Cover</th>
+            <th>Name & Description</th>
+            <th>Reviews</th>
+            <th>Rate Point</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+          <tr>
+            <td>
+              <span>
+                <img width="60" class="img-circle" alt="User Avatar" src= <%=book.image.url%> >
+              </span>
+            </td>
+            <td >
+              <%= link_to book.title, book %>
+              <p>
+                <%= book.description[0...100] %>...
+              </p>
+            </td>
+            <td class="text-center">
+              <%= book.reviews.count %>
+            </td>
+            <td class="text-center">
+              <%= rating_for book, "original_score",
+              {readonly: true, imdb_avg: true} %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

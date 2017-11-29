@@ -21,11 +21,6 @@
         </li>
       </ul>
       <ul class="navbar-nav header-right">
-        <li>
-          <% if logged_in? and current_user.admin? %>
-            <%= link_to 'New Book', new_book_path, :class => "nav-link" %>
-          <% end %>
-        </li>
         <% if logged_in? %>
           <li class="item">
             <span>
