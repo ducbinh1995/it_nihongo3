@@ -59,9 +59,8 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     @review.destroy
-    @user = User.find(@review.user_id)
     respond_to do |format|
-      if @user.admin?
+      if current_user.admin?
         format.html { redirect_to root_path, notice: '' }
       else
         format.html { redirect_to @review.book, notice: 'Review was successfully destroyed.' }

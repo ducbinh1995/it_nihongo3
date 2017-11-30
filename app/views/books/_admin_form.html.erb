@@ -191,14 +191,14 @@
                 <td>
                     <%= link_to review.title, review %>
                     <div class="mic-info">
-                        By: <%= user.name %>
+                        <strong>By:</strong> <%= user.name %>
                     </div>
                     <%= review.content[0...80] %>...
                 </td>
                 <td>
                     <div class="readonly-star">
                         <%= rating_for_user book, user, "original_score",
-                              { :star => 5 } %>
+                              { :star => 5, :readonly => true } %>
                     </div>
                 </td>
                 <td class="text-center">
@@ -211,7 +211,7 @@
                 </tr>
             <% end %>
         </tbody>
-      </table>    
+      </table>
     </div>
   </div>
 </div>

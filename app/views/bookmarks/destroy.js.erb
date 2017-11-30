@@ -1,0 +1,3 @@
+$("#button-bookmark-<%= @book.id %>")
+  .replaceWith("<%= j render partial: 'bookmarks/bookmark_button', locals: { book: @book } %>");
+

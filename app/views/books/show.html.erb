@@ -39,6 +39,16 @@
                 <h5>Description</h5>
                 <p><%= @book.description %></p>
               </div>
+              <div class="card-text">
+                  <% if logged_in? %>
+                    <%= render partial: 'bookmarks/bookmark_button',
+                         locals: {book: @book} %>
+                    <% if not current_user.admin? %>
+                      <%= link_to 'Write a Review',
+                      new_review_path(:bookid => params[:id]), :class => "btn btn-primary"%>
+                    <% end %>
+                  <% end %>
+              </div>
               <div class="card-text reviews">
                 <h5>Reviews</h5>
 
@@ -83,15 +93,6 @@
                 <% end %>
 
               </div>
-            </li>
-            <li class="list-group-item no-border">
-              <% if logged_in? and not current_user.admin? %>
-              <%= link_to 'Write a Review',
-              new_review_path(:bookid => params[:id]), :class => "btn btn-primary"%>
-              <% else %>
-              <%= link_to 'Edit Info', edit_book_path(@book), :class => "btn btn-info" %>
-              <%= link_to 'Delete book', book_path(@book), method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-info" %>
-              <% end %>
             </li>
           </ul>
         </div>
